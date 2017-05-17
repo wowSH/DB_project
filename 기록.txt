@@ -2,8 +2,17 @@
 
 History
 
- 기록 1 : Home Ver.1
+기록 1 : Home Ver.1
 
 기록 2 : Home Ver.2
 
 기록 3 : Home Ver.3
+
+기록 4 : Home Ver.4
+
+170517 최종 : Home_login
+
+이후는 장고로 C9에서 작업하여 
+
+Git : JKkim 으로 commit할 예정
+
