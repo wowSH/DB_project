@@ -1,2 +1,9 @@
+@charset="UTF-8"
+
 History
 
+ 기록 1 : Home Ver.1
+
+기록 2 : Home Ver.2
+
+기록 3 : Home Ver.3
