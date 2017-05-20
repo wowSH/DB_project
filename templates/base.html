@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,3 +10,60 @@
     {% endblock content %}
 </body>
 </html>
+=======
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title> moaU </title>
+	<link type="text/css" rel="stylesheet" href="stylesheet.css">
+	<link type="text/css" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Bree+Serif">
+</head>
+
+<body>
+    <div class="h_container">
+		<header class="header">
+			<article class="logo">
+				<img src="./moaU_logo.jpg" />
+			</article>
+			<nav>
+				<ul class="account">
+					<li><p id="sign_up"></p>
+						<a class="sign-up" href="#"><img src="./sign-up.png" /></a>
+					</li>
+					<li>ID (학번)<br>
+						<form action="server...">
+							<input type="text" name="user_id" size="10" maxlength="10" />
+						</form>
+					</li>
+					<li>PW (비밀번호)<br>
+						<form action="server...">
+							<input type="password" name="password" size="15" maxlength="15" />
+						</form>
+					</li>
+					<li><br>
+						<form action="server...">
+							<button type="submit">로그인</button>
+							<input type="hidden" name="log_in_go" />
+						</form>
+					</li>
+				</ul>
+				<ul class="gnb">
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Book Market</a></li>
+					<li><a href="#">Group Purchase</a></li>
+					<li><a href="#">Taxi Pool</a></li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+	
+	{% block content %}
+	{% endblock content %}
+	
+    <footer class="footbar">
+        <p> Copyright @ moaU DB Team, 2017 </p>
+    </footer>
+</body> 
+</html>	
+>>>>>>> 915f5a3d9763ebad898384496d8127b3b72f362a

@@ -14,11 +14,22 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+<<<<<<< HEAD
 from django.conf.urls import url
 from django.contrib import admin
 from home import views
+=======
+from django.conf.urls import url, include
+from django.contrib import admin
+from home import views
+from bookmarket import urls as bookmarket_urls
+>>>>>>> 915f5a3d9763ebad898384496d8127b3b72f362a
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
+<<<<<<< HEAD
+=======
+    url(r'^bookmarket/', include(bookmarket_urls)),
+>>>>>>> 915f5a3d9763ebad898384496d8127b3b72f362a
 ]
