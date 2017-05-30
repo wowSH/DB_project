@@ -4,16 +4,17 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
+	<title> moaU </title>
+	
+	{% block css %}
   <!-- bootstrap cdn -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<!-- fontawesome cdn -->
+	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
 	
 	<link rel="stylesheet" href="{% static 'home/bootstrap/css/carousel.css' %}">
-
-	
-	<title> moaU </title>
-	<link type="text/css" rel="stylesheet" href="stylesheet.css">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
-	
+	{% endblock %}
 </head>
 
 <body>
@@ -59,12 +60,13 @@
     	{% block content %}
     	{% endblock content %}
 
+      {% block footer %}
       <!-- FOOTER -->
       <footer>
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy; Copyright @ moaU DB Team, 2017.  &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
-    
+      {% endblock %}
     </div><!-- /.container -->
     
     <!-- jquery and bootstrap cdn -->
