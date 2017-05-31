@@ -123,3 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2', # Facebook
+    'django.contrib.auth.backends.ModelBackend', # Django 기본 유저모델    
+]
