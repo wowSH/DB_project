@@ -166,8 +166,8 @@ STATIC_URL = '/static/'
 
 # social-django
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.facebook.FacebookOAuth2', # Facebook
-    'django.contrib.auth.backends.ModelBackend', # Django 기본 유저모델    
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
 ]
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
