@@ -4,8 +4,8 @@ from django.db import models
 
 # Create your models here.
 class Sel_Reg (models.Model):
-    s_name = models.CharField(max_length = 40)
-    s_hp = models.CharField(max_length = 40)
+    name = models.CharField(max_length = 40)
+    hp = models.CharField(max_length = 40)
     
     register_date = models.DateTimeField()
     init_price = models.IntegerField()
@@ -29,10 +29,10 @@ class Product(models.Model):
         return self.title +"/"+ self.state
 
 class Candidate(models.Model):
-    c_name = models.CharField(max_length = 40)
-    c_hp = models.IntegerField(default=0)
+    name = models.CharField(max_length = 40)
+    hp = models.IntegerField(default=0)
    
-    bid = models.ManyToManyField(Product, through='Bid')
+    bidding = models.ManyToManyField(Product, through='Bid')
     
     def __str__(self):
         return self.c_name
