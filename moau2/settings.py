@@ -125,7 +125,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# social-django
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.facebook.FacebookOAuth2', # Facebook
     'django.contrib.auth.backends.ModelBackend', # Django 기본 유저모델    
 ]
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+LOGIN_REDIRECT_URL = '/'
