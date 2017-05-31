@@ -11,10 +11,49 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import json
+
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
+def get_env(setting, envs):
+    try:
+        return envs[setting]
+    except KeyError:
+        error_msg = "You SHOULD set {} environ".format(setting)
+        raise ImproperlyConfigured(error_msg)
+    
+DEV_ENVS = os.path.join(BASE_DIR, "envs_dev.json")
+DEPLOY_ENVS = os.path.join(BASE_DIR, "envs.json")
+
+if os.path.exists(DEV_ENVS):
+    env_file = open(DEV_ENVS)
+elif os.path.exists(DEPLOY_ENVS):
+    env_file = open(DEPLOY_ENVS)
+else:
+    env_file = None
+    
+if env_file is None:
+    try:
+        FACEBOOK_KEY = os.environ['FACEBOOK_KEY']
+        FACEBOOK_SECRET = os.environ['FACEBOOK_SECRET']
+    except KeyError as error_msg:
+        raise ImproperlyConfigured(error_msg)
+else:
+    envs = json.loads(env_file.read())
+    FACEBOOK_KEY = get_env('FACEBOOK_KEY', envs)
+    FACEBOOK_SECRET = get_env("FACEBOOK_SECRET", envs)
+
+# SocialLogin: Facebook
+SOCIAL_AUTH_FACEBOOK_KEY = FACEBOOK_KEY
+SOCIAL_AUTH_FACEBOOK_SECRET = FACEBOOK_SECRET
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields' : 'id, name, email'
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
