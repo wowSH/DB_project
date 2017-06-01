@@ -13,7 +13,7 @@
 	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
 	
 	
-	<link rel="stylesheet" href="{% static 'bootstrap/css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
 	{% endblock %}
 </head>
@@ -48,9 +48,9 @@
         -->
         {% if user.is_authenticated %}
         <p class="navbar-text">{{ user.email }}</p>
-        <a href="{% url 'accounts:logout' %}"><button class="btn btn-primary">Logout</button></a>
+        <a href="{% url 'accounts:logout' %}?next={{request.path}}"><button class="btn btn-primary">Logout</button></a>
         {% else %}
-        <a href="{% url 'social:begin' 'facebook' %}"><button class="btn btn-primary">Login</button></a>
+        <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}"><button class="btn btn-primary">Login</button></a>
         {% endif %}
       </div>
     </nav>
