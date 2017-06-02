@@ -89,3 +89,9 @@ body {
     margin-top: 7rem;
   }
 }
+
+/* Carousel image filterring : opacity */
+
+.carousel-item > img {
+  -webkit-filter: brightness(.45);
+}
