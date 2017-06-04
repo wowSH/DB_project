@@ -4,39 +4,57 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title> moaU </title>
-	
-	{% block css %}
   <!-- bootstrap cdn -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<!-- fontawesome cdn -->
-	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
 	
-	<link rel="stylesheet" href="{% static 'home/bootstrap/css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'home/css/carousel.css' %}">
+  <link rel="stylesheet" href="{% static 'mypage/css/sidebar.css' %}">
+	
+	<title> moaU </title>
+	<link type="text/css" rel="stylesheet" href="stylesheet.css">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
-	{% endblock %}
+	
+	<style type="text/css">
+    .active > a{
+      color:#EA53FF !important;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
     <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
       <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">MoaU</a>
+      <p class="navbar-brand" style="color : #FF384E; font-weight : bold;">MoaU</p>
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
+          <!--{% url 'home' as H %}-->
+          {% if request.get_full_path == "/home/" %}
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          <!--{% url 'bookmarket' as B %}-->
+          {% if request.get_full_path == "/bookmarket/" %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="">group buying</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">book market</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">group buying</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">taxi-pool</a>
+            <a class="nav-link" href="">taxi-pool</a>
           </li>
         </ul>
         <!-- search 
@@ -45,11 +63,25 @@
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
         -->
+        <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-        <p class="navbar-text">{{ user.email }}</p>
-        <a href="{% url "accounts:logout" %}"><button class="btn btn-primary">Logout</button></a>
+          <li>
+            <p class="navbar-text">{{ user.email }}</p>
+            &nbsp;&nbsp;
+          </li>
+          <li>
+            <a href="{% url 'mypage:index' %}"><button class="btn btn-primary">Mypage</button></a>
+            &nbsp;&nbsp;
+          </li>
+          <li>
+            <a href="{% url 'accounts:logout' %}?next={{request.path}}"><button class="btn btn-primary">Logout</button></a>
+          </li>
+        </ul>
         {% else %}
-        <a href="{% url "social:begin" "facebook" %}"><button class="btn btn-primary">Login</button></a>
+          <li>
+            <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}"><button class="btn btn-primary">Login</button></a>
+          </li>
+        </ul>
         {% endif %}
       </div>
     </nav>
@@ -62,13 +94,27 @@
     	{% block content %}
     	{% endblock content %}
 
+    {% if request.get_full_path == "/mypage/" %}
+      <!-- FOOTER : Mypage -->
+      <div class="container">
+        <div class="page-wrapper">
+          <footer class="page-content-wrapper">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>&copy; Copyright @ moaU DB Team, 2017.<br> &nbsp;&nbsp;&nbsp;&nbsp;&middot; <a href="#">Privacy</a> &nbsp;&nbsp;&middot; <a href="#">Terms</a></p>
+          </footer>
+        </div>
+      </div>
+      
+    {% else %}
+
       {% block footer %}
-      <!-- FOOTER -->
+       <!--FOOTER -->
       <footer>
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy; Copyright @ moaU DB Team, 2017.  &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
       {% endblock %}
+    {% endif %}
     </div><!-- /.container -->
     
     <!-- jquery and bootstrap cdn -->
@@ -77,3 +123,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body> 
 </html>	
+
+

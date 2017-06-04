@@ -6,11 +6,11 @@ urlpatterns = [
     # url(r'^$', 'mysite.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^mypage/$', views.index),
-    url(r'^mypage/backout/$', views.backout),
-    url(r'^mypage/bookmarket/$', views.bookmarket),
-    url(r'^mypage/groupbuying/$', views.groupbuying),
-    url(r'^mypage/taxipool/$', views.taxipool),
-    url(r'^mypage/changeinfo/$', views.changeinfo),
+    url(r'^$', views.index, name="index"),
+    url(r'^backout/$', views.backout),
+    url(r'^bookmarket/$', views.bookmarket),
+    url(r'^groupbuying/$', views.groupbuying),
+    url(r'^taxipool/$', views.taxipool),
+    url(r'^changeinfo/$', views.changeinfo),
 
 ]

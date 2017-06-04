@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'groupbuying',
     'taxipool',
     'accounts',
+    'mypage',
 ]
 
 MIDDLEWARE_CLASSES = [

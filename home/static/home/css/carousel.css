@@ -35,6 +35,9 @@ body {
   height: 32rem;
 }
 
+.red {
+  color:#FF384E;
+}
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -62,7 +65,7 @@ body {
 
 /* Thin out the marketing headings */
 .featurette-heading {
-  font-weight: 300;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -.05rem;
 }
@@ -71,12 +74,38 @@ body {
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
-@media (min-width: 40em) {
+@media screen and (max-width: 760px) {
+  .carousel-caption {
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+  }
+  
+  .hidden-xs {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  h1 {
+    font-size : 30px;
+  }
+  
+  h3 {
+    font-size : 25px;
+  }
+  
+}
+
+
+@media screen and (min-width: 760px) {
   /* Bump up size of carousel content */
+  .carousel-caption {
+    margin-bottom: 1.5rem;
+    line-height: 2;
+  }
   .carousel-caption p {
-    margin-bottom: 1.25rem;
-    font-size: 1.25rem;
-    line-height: 1.4;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
   }
 
   .featurette-heading {
@@ -84,8 +113,18 @@ body {
   }
 }
 
-@media (min-width: 62em) {
+@media screen and (min-width: 62em) {
   .featurette-heading {
     margin-top: 7rem;
   }
+}
+
+/* Carousel image filterring : opacity */
+
+.carousel-item > img {
+  -webkit-filter: brightness(.45);
+}
+
+.navbar-collapse {
+  justify-content : flex-end;
 }
