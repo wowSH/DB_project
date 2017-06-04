@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
 import os
 import json
 
@@ -25,7 +24,8 @@ def get_env(setting, envs):
     except KeyError:
         error_msg = "You SHOULD set {} environ".format(setting)
         raise ImproperlyConfigured(error_msg)
-    
+
+
 DEV_ENVS = os.path.join(BASE_DIR, "envs_dev.json")
 DEPLOY_ENVS = os.path.join(BASE_DIR, "envs.json")
 
@@ -35,7 +35,8 @@ elif os.path.exists(DEPLOY_ENVS):
     env_file = open(DEPLOY_ENVS)
 else:
     env_file = None
-    
+
+
 if env_file is None:
     try:
         FACEBOOK_KEY = os.environ['FACEBOOK_KEY']
@@ -95,6 +96,8 @@ INSTALLED_APPS = [
     'social_django',
     'home',
     'bookmarket',
+    'groupbuying',
+    'taxipool',
     'accounts',
 ]
 
@@ -139,6 +142,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'moau2',
+        'USER': 'dbproject',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -167,7 +176,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
+
 """
 @partial
 def add_extra_user_info(backend, details, response, is_new=False, *args, **kwargs):

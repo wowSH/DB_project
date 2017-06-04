@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title> moaU </title>
-	
+
 	{% block css %}
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">	
@@ -18,6 +18,19 @@
 	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
 	
+
+	{% block css %}
+  <!-- bootstrap cdn -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- fontawesome cdn -->
+	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
+
+
+	<script src="{% static 'js/base.js' %}"></script>
+
+	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
+
 
 	{% endblock %}
 </head>
@@ -37,21 +50,17 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">group buying</a>
+          <li>
+            <a class="nav-link" href="{% url 'groupbuying:index' %}">group buying</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">taxi-pool</a>
+            <a class="nav-link" href="{% url 'taxipool:index' %}">taxi-pool</a>
           </li>
         </ul>
-        <!-- search 
-        <form class="form-inline mt-2 mt-md-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        -->
+
+
         {% if user.is_authenticated %}
-        <p class="navbar-text">{{ user.username }}</p>
+        <p class="navbar-text">{{ user.email }}</p>
         <a href="{% url 'accounts:logout' %}?next={{ request.path }}"><button class="btn btn-primary">Logout</button></a>
         {% else %}
         <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><button class="btn btn-primary">Login</button></a>
@@ -75,10 +84,11 @@
       </footer>
       {% endblock %}
     </div><!-- /.container -->
-    
+
     <!-- jquery and bootstrap cdn -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
 </body> 
 </html>	

@@ -6,11 +6,15 @@ from .forms import RegisterForm
 import datetime
 
 # Create your views here.
+from django.utils import timezone
+import datetime
+# Create your views here.
 def index(request):
     return render(request, 'bookmarket/index.html')
-    
+
 def register_new(request):
     if request.method == "POST":
+
         new_product = Product_Register(
             category = request.POST['category'],
             title = request.POST['title'],
@@ -26,4 +30,7 @@ def register_new(request):
         new_product.register_date = datetime.datetime.now()
         new_product.save()
         return redirect('bookmarket:index')
+    else:
+        form = RegisterForm()
     return render(request, 'bookmarket/index', {'form': form})
+    

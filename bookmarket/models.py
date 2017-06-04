@@ -49,26 +49,36 @@ class Seller (models.Model):
 
 class Product_Register(models.Model):
     title = models.CharField(max_length = 40)
-    category = models.CharField(max_length = 40)
+    MAJOR_E = 'ME'
+    MAJOR_NE = 'MN'
+    LIBERAL = 'LI'
+    ETC = 'ET'
+    CTCHOICE = (
+        (MAJOR_E, 'Major_e'),
+        (MAJOR_NE, 'Major_ne'),
+        (LIBERAL, 'Liberal'),
+        (ETC, 'Etc'),
+    )
+    category = models.CharField(max_length = 40, choices = CTCHOICE,default = ETC)
     author = models.CharField(max_length = 40, null=True)
     subject = models.CharField(max_length = 40)
     state = models.CharField(max_length = 5)
     condition = models.CharField(max_length = 5)
-    
     register_date = models.DateTimeField()
     init_price = models.IntegerField()
     imm_price = models.IntegerField()
     closing_date = models.DateTimeField()
-    image = models.ImageField(upload_to=user_directory_path,)
-    
+
+    image = models.ImageField(upload_to=user_directory_path, default =0)
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.title +"/"+ self.state
 
 class Candidate(models.Model):
     name = models.CharField(max_length = 40)
     hp = models.IntegerField(default=0)
+
    
     bidding = models.ManyToManyField(Product_Register, through='Bid')
     
@@ -76,11 +86,12 @@ class Candidate(models.Model):
         return self.c_name
 
 
+
 class Bid(models.Model):
     bid_date = models.DateTimeField()
     bid_price = models.IntegerField()
     priority = models.IntegerField()
-   
+
     product = models.ForeignKey(Product_Register, on_delete=models.CASCADE)
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
  
