@@ -1,5 +1,5 @@
 """
-WSGI config for moau project.
+WSGI config for moau2 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

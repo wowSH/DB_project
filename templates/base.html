@@ -4,16 +4,17 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
+	<title> moaU </title>
+	
+	{% block css %}
   <!-- bootstrap cdn -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<!-- fontawesome cdn -->
+	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
 	
 	<link rel="stylesheet" href="{% static 'home/bootstrap/css/carousel.css' %}">
-
-	
-	<title> moaU </title>
-	<link type="text/css" rel="stylesheet" href="stylesheet.css">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
-	
+	{% endblock %}
 </head>
 
 <body>
@@ -29,26 +30,27 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">book market(중고책)</a>
+            <a class="nav-link" href="#">book market</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">group buying(공동구매)</a>
+            <a class="nav-link" href="#">group buying</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">taxi-pool</a>
           </li>
         </ul>
-
+        <!-- search 
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <form class="form-inline mt-2 mt-md-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign in(회원가입)</button>
-        </form>
-        <form class="form-inline mt-2 mt-md-0">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign up(로그인)</button>
-        </form>
+        -->
+        {% if user.is_authenticated %}
+        <p class="navbar-text">{{ user.email }}</p>
+        <a href="{% url "accounts:logout" %}"><button class="btn btn-primary">Logout</button></a>
+        {% else %}
+        <a href="{% url "social:begin" "facebook" %}"><button class="btn btn-primary">Login</button></a>
+        {% endif %}
       </div>
     </nav>
 
@@ -60,13 +62,13 @@
     	{% block content %}
     	{% endblock content %}
 
-
+      {% block footer %}
       <!-- FOOTER -->
       <footer>
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>&copy; Copyright @ moaU DB Team, 2017.  &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
       </footer>
-    
+      {% endblock %}
     </div><!-- /.container -->
     
     <!-- jquery and bootstrap cdn -->
