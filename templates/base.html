@@ -13,7 +13,6 @@
 	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
 	
 	
-	<script src="{% static 'bookmarket/js/boostrap_modal.js' %}"></script>   
 	<script src="{% static 'js/base.js' %}"></script>   
 
 	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
@@ -52,7 +51,7 @@
         </form>
         -->
         {% if user.is_authenticated %}
-        <p class="navbar-text">{{ user.email }}</p>
+        <p class="navbar-text">{{ user.username }}</p>
         <a href="{% url 'accounts:logout' %}?next={{ request.path }}"><button class="btn btn-primary">Logout</button></a>
         {% else %}
         <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}"><button class="btn btn-primary">Login</button></a>
