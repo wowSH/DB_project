@@ -4,7 +4,7 @@ from django.http import HttpResponse
 ###############################################################3
 
 def index(request):
-    return HttpResponse("taxipool")
+    return render(request, 'taxipool/index.html')
 ###############################################################3
 ###############################################################3
 def seek(request):

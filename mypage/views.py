@@ -3,20 +3,27 @@ from django.http import HttpResponse
 # Create your views here.
 
 # Create your views here.
-def index(request):
-    return render(request, 'mypage/index.html')
-
-def backout (request):
-    return
-
 def changeinfo(request):
-    return
+    return render(request, 'mypage/changeinfo.html')
 
-def groupbuying(request):
-    return
+def mp_bookmarket(request):
+    return render(request, 'mypage/bookmarket.html')
+    
+def mp_groupbuying(request):
+    return render(request, 'mypage/groupbuying.html')
+    
+def mp_taxipool(request):
+    return render(request, 'mypage/taxipool.html')
 
-def taxipool(request):
-    return
 
-def bookmarket(request):
-    return
+# def backout (request):
+#     return
+
+# def groupbuying(request):
+#     return
+
+# def taxipool(request):
+#     return
+
+# def bookmarket(request):
+#     return

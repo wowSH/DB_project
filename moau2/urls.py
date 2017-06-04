@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^home/', include('home.urls', namespace="home")),
     url(r'^accounts/', include('accounts.urls', namespace='accounts')),
 
-    url(r'^bookmarket/', include('bookmarket.urls', namespace="bookmarket"), ),
+    url(r'^bookmarket/', include('bookmarket.urls', namespace="bookmarket")),
     url(r'^groupbuying/', include('groupbuying.urls', namespace="groupbuying") ),
     url(r'^taxipool/', include('taxipool.urls', namespace="taxipool") ),
     url(r'^mypage/', include('mypage.urls', namespace="mypage")),

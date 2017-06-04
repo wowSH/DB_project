@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 ###########################################################
 def index (request):
-    return HttpResponse("Groupbuying")
+    return render(request, 'groupbuying/index.html')
 
 ###########################################################
 def open(request):
