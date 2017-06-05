@@ -94,7 +94,7 @@
     	{% block content %}
     	{% endblock content %}
 
-    {% if request.get_full_path == "/mypage/" %}
+    {% if request.path|slice:":7" == '/mypage' %} 
       <!-- FOOTER : Mypage -->
       <div class="container">
         <div class="page-wrapper">
