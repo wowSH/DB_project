@@ -8,7 +8,6 @@ import os
 
 # Create your models here.
 
-   
 #http://hjh5488.tistory.com/12
 def set_filename_format(now, instance, filename): 
     """ file format setting 
@@ -36,10 +35,9 @@ def user_directory_path(instance, filename):
         day=now.day, 
         username=instance.user.username, 
         filename=set_filename_format(now, instance, filename), 
-    ) 
+    )
     return path
-
-
+    
 class Seller (models.Model):
     name = models.CharField(max_length = 40)
     hp = models.CharField(max_length = 40)
@@ -79,11 +77,11 @@ class Candidate(models.Model):
     name = models.CharField(max_length = 40)
     hp = models.IntegerField(default=0)
 
-   
     bidding = models.ManyToManyField(Product_Register, through='Bid')
     
     def __str__(self):
         return self.c_name
+
 
 
 

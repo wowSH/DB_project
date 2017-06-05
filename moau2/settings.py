@@ -95,6 +95,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'home',
+    'mypage',
     'bookmarket',
     'groupbuying',
     'taxipool',
