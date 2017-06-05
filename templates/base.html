@@ -4,16 +4,20 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-  <!-- bootstrap cdn -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	
-	<link rel="stylesheet" href="{% static 'home/css/carousel.css' %}">
-  <link rel="stylesheet" href="{% static 'mypage/css/sidebar.css' %}">
-	
 	<title> moaU </title>
-	<link type="text/css" rel="stylesheet" href="stylesheet.css">
+
+  <!-- bootstrap cdn -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <!-- fontawesome cdn -->
+	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
+
+
+	<script src="{% static 'js/base.js' %}"></script>
+
+	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'mypage/css/sidebar.css' %}">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
-	
+
 	<style type="text/css">
     .active > a{
       color:#EA53FF !important;
@@ -30,7 +34,6 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          <!--{% url 'home' as H %}-->
           {% if request.get_full_path == "/home/" %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
@@ -50,14 +53,26 @@
             <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
           </li>
           {% endif %}
-          <li class="nav-item">
-            <a class="nav-link" href="">group buying</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">taxi-pool</a>
-          </li>
+					{% if request.get_full_path == "/groupbuying/" %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'groupbuying:index' %}">group buying</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'groupbuying:index' %}">group buying</a>
+					</li>
+					{% endif %}
+					{% if request.get_full_path == "/taxipool/" %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'taxipool:index' %}">taxi pool</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'taxipool:index' %}">taxi pool</a>
+					</li>
+					{% endif %}
         </ul>
-        <!-- search 
+        <!-- search
         <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -105,6 +120,7 @@
         </div>
       </div>
       
+
     {% else %}
 
       {% block footer %}
@@ -117,11 +133,10 @@
     {% endif %}
     </div><!-- /.container -->
     
+
     <!-- jquery and bootstrap cdn -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-</body> 
-</html>	
-
-
+</body>
+</html>

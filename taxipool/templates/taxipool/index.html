@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top:100px">
+
+    <div class="row justify-content-md-center">
+    </div>
+    <div class="row justify-content-md-center"> <!-- for search box -->
+        <div class="col-md-2">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                <option selected>Category</option>
+                <option value="1">departure</option>
+                <option value="2">Destination</option>
+
+            </select>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="" />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <form class="form-inline">
+                <h6 class="text-uppercase"> <strong>Seek your Taxi Members</strong>&nbsp;&nbsp;</h6>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{% if user.is_authenticated %}#seek{% else %}#alarm_login{% endif %}">Seek</button>
+            </form>
+        </div>
+
+        {% include 'taxipool/modals/seek.html' %}
+        {% include 'modals/alarm_login.html' %}
+
+
+
+    </div>
+    <div class="row"> <!-- for visualization -->
+        Visualation
+    </div>
+    <div class="row"> <!-- table -->
+        <table class="table table-striped ">
+          <thead>
+            <tr>
+              <th>Depart Date</th>
+              <th>departure</th>
+              <th>Destination</th>
+              <th>Applied</th>
+              <th>Recurited</th>
+              <th>State</th>
+              <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+</div>
+<h2 style="text-indent:9999px;">blank</h2>
+<h2 style="text-indent:9999px;">blank</h2>
+{% endblock content %}
