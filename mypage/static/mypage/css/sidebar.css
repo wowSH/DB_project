@@ -77,3 +77,15 @@ h3 {
     width: 700px;
     border-radius: 15px;
 }
+
+/* Table Text Centering */
+
+.table th, td {
+   text-align: center;   
+   /*vertical-align: middle;*/
+}
+
+
+.table > thead > tr > th, .table > tbody > tr > td {
+  vertical-align: middle;
+}

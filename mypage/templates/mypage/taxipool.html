@@ -22,84 +22,85 @@
   <div class="container">
     <div class="page-wrapper">
       <div class="page-content-wrapper">
-        <h2 style="text-indent:9999px;">blank</h2>
-        <h2 style="text-indent:9999px;">blank</h2>
+        {% for i in "12" %} <h2 style="text-indent:9999px;">blank</h2> {% endfor %}
         <h1>MyPage - Taxi Pool</h1>
         <h2 style="text-indent:9999px;">blank</h2>
         <h3 class="text-center"> Taxi Pool : Attend Status</h3>
-        <table class="table table-condensed table-hover table-striped">
-          <thead>
-            <tr>
-              <th>Departure time(MM. DD, HH)</th>
-              <th>Departure</th>
-              <th>Destination</th>
-              <th>Number of Person(Limit)</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>6. 8, 23시</td>
-              <td>유니스트</td>
-              <td>울산역</td>
-              <td>2 / 3</td>
-              <td>Atteding &nbsp; <button type="button" class="btn btn-primary btn-md"> Cancellation </button></td>
-            </tr>
-            <tr>
-              <td>6. 5, 24시</td>
-              <td>울산대</td>
-              <td>유니스트</td>
-              <td>3 / 3</td>
-              <td>Atteding Success &nbsp;<button type="button" class="btn btn-primary btn-md"> Confirm the Seeker </button></td>
-            </tr>
-            <tr>
-              <td>6. 10, 7시</td>
-              <td>유니스트</td>
-              <td>울산여고</td>
-              <td>2 / 3</td>
-              <td>Attending Canceled</td>
-            </tr>
-          </tbody>
-        </table>
-        <h2 style="text-indent:9999px;">blank</h2>
-        <h2 style="text-indent:9999px;">blank</h2>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Departure time(MM. DD, HH)</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Number of Person(Limit)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6. 8, 23시</td>
+                <td>유니스트</td>
+                <td>울산역</td>
+                <td>2 / 3</td>
+                <td>Atteding &nbsp; <button type="button" class="btn btn-primary btn-md"> Cancellation </button></td>
+              </tr>
+              <tr>
+                <td>6. 5, 24시</td>
+                <td>울산대</td>
+                <td>유니스트</td>
+                <td>3 / 3</td>
+                <td>Atteding Success &nbsp;<button type="button" class="btn btn-primary btn-md"> Confirm the Seeker </button></td>
+              </tr>
+              <tr>
+                <td>6. 10, 7시</td>
+                <td>유니스트</td>
+                <td>울산여고</td>
+                <td>2 / 3</td>
+                <td>Attending Canceled</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% for i in "12" %} <h2 style="text-indent:9999px;">blank</h2> {% endfor %}
         <h3 class="text-center"> Taxi Pool : Seek Status</h3>
-        <table class="table table-condensed table-hover table-striped">
-          <thead>
-            <tr>
-              <th>Departure time(MM. DD, HH)</th>
-              <th>Departure</th>
-              <th>Destination</th>
-              <th>Number of Person(Limit)</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>6. 11, 15시</td>
-              <td>울산역</td>
-              <td>유니스트</td>
-              <td>2 / 3</td>
-              <td>Seeking &nbsp;<button type="button" class="btn btn-primary btn-md"> Early closing / Cancellation </button></td>
-            </tr>
-            <tr>
-              <td>6. 1, 12시</td>
-              <td>울산역</td>
-              <td>부산역</td>
-              <td>2 / 3</td>
-              <td>Normal Finish &nbsp;<button type="button" class="btn btn-primary btn-md"> Confirm the Attedees </button></td>
-            </tr>
-            <tr>
-              <td>4. 29, 14시</td>
-              <td>울산역</td>
-              <td>부산역</td>
-              <td>2 / 3</td>
-              <td>Seek failed</td>
-            </tr>
-          </tbody>
-        </table>
-        <h2 style="text-indent:9999px;">blank</h2>
-        <h2 style="text-indent:9999px;">blank</h2>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>Departure time(MM. DD, HH)</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Number of Person(Limit)</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>6. 11, 15시</td>
+                <td>울산역</td>
+                <td>유니스트</td>
+                <td>2 / 3</td>
+                <td>Seeking &nbsp;<button type="button" class="btn btn-primary btn-md"> Early closing / Cancellation </button></td>
+              </tr>
+              <tr>
+                <td>6. 1, 12시</td>
+                <td>울산역</td>
+                <td>부산역</td>
+                <td>2 / 3</td>
+                <td>Normal Finish &nbsp;<button type="button" class="btn btn-primary btn-md"> Confirm the Attedees </button></td>
+              </tr>
+              <tr>
+                <td>4. 29, 14시</td>
+                <td>울산역</td>
+                <td>부산역</td>
+                <td>2 / 3</td>
+                <td>Seek failed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% for i in "12" %} <h2 style="text-indent:9999px;">blank</h2> {% endfor %}
       </div>
     <!-- /본문 -->
     </div>
