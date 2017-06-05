@@ -24,11 +24,13 @@ def register_new(request):
             imm_price = request.POST['imm_price'],
             closing_date = request.POST['closing_date'],
             state = request.POST['state'],
-            image = request.POST['image'],
+            #image = request.FILES['image'],
         )
+        new_product.image = request.FILES['image']
         new_product.seller = request.user
         new_product.register_date = datetime.datetime.now()
         new_product.save()
+        #handle_upload_file(request.FILES['image'])
         return redirect('bookmarket:index')
     else:
         form = RegisterForm()

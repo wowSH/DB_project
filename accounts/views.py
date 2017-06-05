@@ -1,6 +1,13 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
+def profile(request, backend, user, response, is_new=False, *args, **kwargs):
+    if backend.name == 'facebook' and is_new:
+        return render(request, "accounts/profile.html")
+        
+    return render(request, '/')
+
 
 """
 @partial

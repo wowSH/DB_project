@@ -29,4 +29,6 @@ urlpatterns = [
     url(r'^groupbuying/', include('groupbuying.urls', namespace='groupbuying')),
     url(r'^taxipool/', include('taxipool.urls', namespace='taxipool')),
     url(r'^mypage/', include('mypage.urls', namespace='mypage')),
+    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+
 ]

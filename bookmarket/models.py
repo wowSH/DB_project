@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -15,7 +17,7 @@ def set_filename_format(now, instance, filename):
         {username}-{date}-{microsecond}{extension} hjh-2016-07-12-158859.png 
     """ 
     return "{username}-{date}-{microsecond}{extension}".format( 
-        username=instance.user.username, 
+        username=instance.seller.username, 
         date=str(now.date()), 
         microsecond=now.microsecond, 
         extension=os.path.splitext(filename)[1], 
@@ -33,7 +35,7 @@ def user_directory_path(instance, filename):
         year=now.year, 
         month=now.month, 
         day=now.day, 
-        username=instance.user.username, 
+        username=instance.seller.username, 
         filename=set_filename_format(now, instance, filename), 
     )
     return path
@@ -67,7 +69,13 @@ class Product_Register(models.Model):
     imm_price = models.IntegerField()
     closing_date = models.DateTimeField()
 
-    image = models.ImageField(upload_to=user_directory_path, default =0)
+    #image = models.ImageField(upload_to=user_directory_path, default =0)
+    image = ProcessedImageField(
+        upload_to=user_directory_path,
+        processors=[ResizeToFill(160, 160)],
+        format='JPEG',
+        options={'quality': 60}
+    )
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -81,8 +89,6 @@ class Candidate(models.Model):
     
     def __str__(self):
         return self.c_name
-
-
 
 
 class Bid(models.Model):
