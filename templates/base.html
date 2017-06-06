@@ -14,7 +14,7 @@
 
 	<script src="{% static 'js/base.js' %}"></script>
 
-	<link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'home/css/carousel.css' %}">
 	<link rel="stylesheet" href="{% static 'mypage/css/sidebar.css' %}">
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
 
@@ -46,29 +46,29 @@
           <!--{% url 'bookmarket' as B %}-->
           {% if request.get_full_path == "/bookmarket/" %}
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'bookmarket:index' %}">book market</a>
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
           </li>
           {% endif %}
 					{% if request.get_full_path == "/groupbuying/" %}
 					<li class="nav-item active">
-						<a class="nav-link" href="{% url 'groupbuying:index' %}">group buying</a>
+						<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
 					</li>
 					{% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'groupbuying:index' %}">group buying</a>
+						<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
 					</li>
 					{% endif %}
 					{% if request.get_full_path == "/taxipool/" %}
 					<li class="nav-item active">
-						<a class="nav-link" href="{% url 'taxipool:index' %}">taxi pool</a>
+						<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
 					</li>
 					{% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'taxipool:index' %}">taxi pool</a>
+						<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
 					</li>
 					{% endif %}
         </ul>
@@ -88,6 +88,7 @@
             <a href="{% url 'mypage:changeinfo' %}"><button class="btn btn-primary">Mypage</button></a>
             &nbsp;&nbsp;
           </li>
+          <li style="color: rgb(41, 43, 44);">o</li>
           <li>
             <a href="{% url 'accounts:logout' %}?next={{request.path}}"><button class="btn btn-primary">Logout</button></a>
           </li>
@@ -111,7 +112,7 @@
 
     {% if request.path|slice:":7" == '/mypage' %} 
       <!-- FOOTER : Mypage -->
-      <div class="container">
+      <div class="container_mp">
         <div class="page-wrapper">
           <footer class="page-content-wrapper">
             <p class="float-right"><a href="#">Back to top</a></p>

@@ -16,7 +16,7 @@
 
 .page-content-wrapper {
   width: 100%;
-  padding: 20px;
+  padding-left: 20px;
 }
 /* 사이드바 스타일 */
 
@@ -71,11 +71,18 @@ h3 {
 /* Changeinfo */
 
 .changeinfo_mr {
-    border: 2px solid #a1a1a1;
-    padding: 10px 40px; 
-    /*background: #E9FFE1;*/
-    width: 700px;
-    border-radius: 15px;
+  border: 2px solid #a1a1a1;
+  border-color: #5cb85c;
+  padding: 20px 60px;
+  width: 700px;
+  height: 280px;
+  margin-top: 240px;
+  margin-bottom: 150px;
+  border-radius: 15px;
+}
+
+.changeinfo_mr h3, h4 {
+   margin-bottom: 30px;
 }
 
 /* Table Text Centering */
@@ -88,4 +95,44 @@ h3 {
 
 .table > thead > tr > th, .table > tbody > tr > td {
   vertical-align: middle;
+}
+
+/* Margin */
+.page-content-wrapper > h1 {
+  margin-top: 70px;
+}
+
+.page-content-wrapper > h3 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+/* Container_mp */
+
+@media (min-width: 1420px) {
+  .container {
+    width: 1380px !important; 
+  }
+  
+  .container_mp {
+    width: inherit;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1176px !important; 
+  }
+
+  .container_mp {
+    width: inherit;
+    max-width: 100%;
+  }
+}
+
+.container_mp {
+    position: relative;
+    padding-left: 15px;
+    margin-bottom: 60px;
 }
