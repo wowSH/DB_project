@@ -16,8 +16,10 @@ def set_filename_format(now, instance, filename):
     e.g) 
         {username}-{date}-{microsecond}{extension} hjh-2016-07-12-158859.png 
     """ 
+    #return "{username}-{date}-{microsecond}{extension}".format( 
     return "{username}-{date}-{microsecond}{extension}".format( 
         username=instance.seller.username, 
+        p_id = str(instance.id),
         date=str(now.date()), 
         microsecond=now.microsecond, 
         extension=os.path.splitext(filename)[1], 
@@ -29,13 +31,22 @@ def user_directory_path(instance, filename):
     e.g) 
         images/{year}/{month}/{day}/{username}/{filename} 
         images/2016/7/12/hjh/hjh-2016-07-12-158859.png 
-    """ 
+
+    
     now = datetime.datetime.now() 
     path = "images/{year}/{month}/{day}/{username}/{filename}".format( 
         year=now.year, 
         month=now.month, 
         day=now.day, 
         username=instance.seller.username, 
+        filename=set_filename_format(now, instance, filename), 
+    )
+    """
+    now = datetime.datetime.now() 
+    path = "images/bookmarket/{filename}".format( 
+        year=now.year, 
+        month=now.month, 
+        day=now.day, 
         filename=set_filename_format(now, instance, filename), 
     )
     return path
@@ -72,6 +83,7 @@ class Product_Register(models.Model):
     #image = models.ImageField(upload_to=user_directory_path, default =0)
     image = ProcessedImageField(
         upload_to=user_directory_path,
+        #upload_to='images/bookmarket/'+id,
         processors=[ResizeToFill(160, 160)],
         format='JPEG',
         options={'quality': 60}
@@ -99,3 +111,5 @@ class Bid(models.Model):
     product = models.ForeignKey(Product_Register, on_delete=models.CASCADE)
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
  
+
+

@@ -16,6 +16,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def get_env(setting, envs):
@@ -189,6 +190,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -212,4 +214,21 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_REDIRECT_URL = '/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
+
+
+
+
+print ('BASE_DIR:\t{}'.format(BASE_DIR))
+print ('PROJECT_DIR:\t{}'.format(PROJECT_DIR))
+print (STATIC_ROOT)
+print ('static files:\t{}'.format(STATICFILES_DIRS))
+print ('media url:\t{}'.format(MEDIA_URL))
+print ('MEDIA_ROOT:\t{}'.format(MEDIA_ROOT))
+
+
+
+try:
+    from local_settings import *
+except:
+    pass

@@ -1,3 +1,27 @@
-<div class="container">
-
+{% for row in rows %}
+{% if forloop.counter0|divisibleby:3 %}
+<div class="card-deck">
+{% endif %}
+    <div class="card" style="width: 20rem;">
+      
+      <img class="card-img-top" src="/media/{{ row.image }}" alt="Card image cap">
+  
+      <!-- Card header -->
+      <div class="card-block text-center">
+        <h4 class="card-title">{{ row.title }}</h4>
+        <hr>
+      </div>
+      <!-- Card footer -->
+      <div class="card-data">
+          <ul style="overflow-x:hidden;white-space:nowrap;">
+              <li style="display:inline;"><i class="fa fa-clock-o"></i> {{ row.closing_date|date:"d/M/Y" }}</li>
+              <li style="display:inline;"><i class="fa fa-krw" aria-hidden="true"></i>{{ row.init_price}}</li>
+              <li style="display:inline;"><a href="#" class="btn btn-primary float-right btn-sm"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+          </ul>
+      </div>
+      <!-- Card footer -->
+    </div>
+{% if forloop.counter|divisibleby:3 %}
 </div>
+{% endif %}
+{% endfor %}
