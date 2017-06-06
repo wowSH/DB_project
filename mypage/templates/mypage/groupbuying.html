@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<!-- 마이페이지 : group buying 화면-->
+
+  <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">My Page</li>
+        <li><a href="#">Book Market</a></li>
+        <li><a class="active" href="#">Group Buying</a></li>
+        <li><a href="#">Taxi Pool</a></li>
+        <li><a href="#">정보 수정</a></li>
+        <li><a href="#">탈퇴</a></li>
+      </ul>
+    </div>
+  <!-- /사이드바 -->
+  
+  <!-- 본문 -->
+  <div class="container">
+    <div class="page-wrapper">
+      <div class="page-content-wrapper">
+        <h1>마이페이지 - 사이드 바</h1>
+        <p>여기는 공동 구매 창입니다.</p>
+        <p> table 띄우는 공간</p>
+        <table class="table table-condensed table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>책 제목</th>
+              <th>입찰 신청일</th>
+              <th>입찰 마감일</th>
+              <th>입찰 상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>앤프</td>
+              <td>5. 27</td>
+              <td>6. 13</td>
+              <td>입찰 중(1순위, 후순위)(취소버튼)</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>일반 물리학</td>
+              <td>5. 31</td>
+              <td>6. 3</td>
+              <td>입찰 성공(등록자 확인 버튼)</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>장고로 배우는 웹 프로그래밍</td>
+              <td>5. 21</td>
+              <td>5. 27</td>
+              <td>입찰 실패(후순위)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p></p>
+        <table class="table table-condensed table-hover table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>책 제목</th>
+              <th>입찰 등록일</th>
+              <th>입찰 마감일</th>
+              <th>입찰 상태</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>앤프</td>
+              <td>5. 27</td>
+              <td>6. 13</td>
+              <td>입찰 중 [조기 마갑, 취소 버튼]</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>일반 화학 2</td>
+              <td>5. 31</td>
+              <td>6. 3</td>
+              <td>정상 마감 [구매자 확인 버튼]</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>세계와 글로벌 경제 원서</td>
+              <td>5. 21</td>
+              <td>5. 27</td>
+              <td>유찰</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <!-- /본문 -->
+    </div>
+  </div>
+{% endblock content %}
