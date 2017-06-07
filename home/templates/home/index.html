@@ -74,19 +74,19 @@
           <img class="rounded-circle" src="{% static 'home/images/heading_1.jpg' %}" alt="bookmarket image" width="200" height="200">
           <h2>Book Market</h2>
           <p>Register used books you wanted to sell. Find out if books you want to buy are registered! moaU's book market has the elements of an auction, making it economical to trade!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{% url 'bookmarket:index' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="rounded-circle" src="{% static 'home/images/heading_2.png' %}" alt="groupbuying image>" width="200" height="200">
           <h2>Group Buying</h2>
           <p> Food, Electronics, Cosmetics and Clothing, You can connect even party member! Do you want to reduce shipping costs? MoaU will help you!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{% url 'groupbuying:index' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="rounded-circle" src="{% static 'home/images/heading_3.png' %}" alt="taxi pool image" width="200" height="200">
           <h2>Taxi Pool</h2>
           <p>Do you want to take a taxi but are you looking for members to pay together? Recruit the members from moaU taxi pool!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          <p><a class="btn btn-secondary" href="{% url 'taxipool:index' %}" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
