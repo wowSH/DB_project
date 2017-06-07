@@ -1,0 +1,37 @@
+<!-- 모달 : show_attendants.html, 마이페이지 택시풀에서 본인이 만든 taxi sharing 모집 완료 후 신청자들의 전체 신상정보 확인용 -->
+<form method="POST" action="{% url 'mypage:show_Attendants' %}">
+    {% csrf_token %}
+    <div class="modal fade" id="show_attendants">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"> The users who match you </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!--for문 사용 : Attendants 리스트가 있으면 for문 사용해서 U index로 하나씩 불러온다-->
+                    {% for U in Attendants %} 
+                        <h4 class="text-info text-center">Attendants #(U는 Attendants의 #번째 element)</h4>
+                        <div class="form-group row">
+                            <label for="example-date-input" class="col-4 col-form-label">Nickname</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" placeholder="#여기에 Attendants #의 닉네임(or 메일) 들어감" id="example-text-input" name="nickname" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="example-date-input" class="col-4 col-form-label">H.P.</label>
+                            <div class="col-8">
+                                <input class="form-control" type="text" placeholder="#여기에 Attendants #의 폰 번호 들어감" id="example-text-input" name="HP" disabled>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <h4 class="text-danger text-center">Have a successful deal with a matched users through moaU!</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

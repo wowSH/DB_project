@@ -1,7 +1,7 @@
-<!-- 모달 : show_buyer.html, 마이페이지 북마켓에서 본인이 등록한 경매 물품의 최종 낙찰된 구매자가 나왔을 떄 구매자 신상정보 확인용 -->
-<form method="POST" action="{% url 'mypage:show_Buyer' %}">
+<!-- 모달 : show_seeker.html, 마이페이지 택시풀에서 유저가 모집 참가 및 성공하여 seeker 신상정보 확인용 -->
+<form method="POST" action="{% url 'mypage:show_Seeker' %}">
     {% csrf_token %}
-    <div class="modal fade" id="show_buyer">
+    <div class="modal fade" id="show_seeker">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -14,13 +14,13 @@
                     <div class="form-group row">
                         <label for="example-date-input" class="col-4 col-form-label">Nickname</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" placeholder="#여기에 buyer 닉네임(or 메일) 들어감" id="example-text-input" name="nickname" disabled>
+                            <input class="form-control" type="text" placeholder="#여기에 seeker 닉네임(or 메일) 들어감" id="example-text-input" name="nickname" disabled>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-date-input" class="col-4 col-form-label">H.P.</label>
                         <div class="col-8">
-                            <input class="form-control" type="text" placeholder="#여기에 buyer 폰 번호 들어감" id="example-text-input" name="HP" disabled>
+                            <input class="form-control" type="text" placeholder="#여기에 seeker 폰 번호 들어감" id="example-text-input" name="HP" disabled>
                         </div>
                     </div>
                 </div>

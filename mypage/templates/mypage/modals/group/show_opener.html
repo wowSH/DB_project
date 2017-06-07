@@ -1,19 +1,31 @@
-<form method="POST" action="{% url 'mypage:cancellation_User' %}">
+<!-- 모달 : show_opener.html, 마이페이지 공동구매에서 유저가 공동구매 신청 후 성공하여 모집자 신상정보 확인용 -->
+<form method="POST" action="{% url 'mypage:show_Opener' %}">
     {% csrf_token %}
-    <div class="modal fade" id="cancellation">
+    <div class="modal fade" id="show_opener">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cancellation</h5>
+                    <h5 class="modal-title"> The user who matches you </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-danger">Are you sure you want to cancellation?</h4>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Nickname</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 opener 닉네임(or 메일) 들어감" id="example-text-input" name="nickname" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">H.P.</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 opener 폰 번호 들어감" id="example-text-input" name="HP" disabled>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Cancel</button>
+                    <h4 class="text-danger text-center">Have a successful deal with a matched user through moaU!</h4>
                 </div>
             </div>
         </div>

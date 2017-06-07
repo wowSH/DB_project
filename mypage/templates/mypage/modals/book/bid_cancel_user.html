@@ -1,19 +1,73 @@
-<form method="POST" action="{% url 'mypage:cancellation_User' %}">
+<!-- 모달 : bid_cancel_user.html, 마이페이지 북마켓에서 유저가 bid 수정 혹은 취소용 -->
+<form method="POST" action="{% url 'mypage:bid_cancel_User' %}">
     {% csrf_token %}
-    <div class="modal fade" id="cancellation">
+    <div class="modal fade" id="bid_cancel_user">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Cancellation</h5>
+                    <h5 class="modal-title">Bid / Delete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <h4 class="text-danger">Are you sure you want to cancellation?</h4>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Title</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 제목 들어감" id="example-text-input" name="title" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Category</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 카테고리 들어감" id="example-text-input" name="category" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">subject</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 subject 들어감" id="example-text-input" name="subject" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Current Bid price</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 현재 입찰가 들어감" id="example-text-input" name="bid_price" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Immediate price</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 즉시 입찰가 들어감" id="example-text-input" name="imm_price" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Due Date</label>
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="#여기에 closing_date 들어감" id="example-text-input" name="closing_date" disabled>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Cancel</button>
+                    <div class="form-group row">
+                        <h4 class="col-12 text-danger">New Bid</h4>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-5 offset-3">
+                            <input class="form-control" type="text" placeholder="More than current Price" id="example-text-input" name="bid_price">
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">Bid</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h4 class="col-12 text-danger">Delete your Bid(Please decide carefully)</h4>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4 offset-8">
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

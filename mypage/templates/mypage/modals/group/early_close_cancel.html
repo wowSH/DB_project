@@ -1,11 +1,11 @@
-<!-- 모달 : cancel_user.html, 마이페이지 공동구매에서 유저가 신청한 party 취소용 -->
-<form method="POST" action="{% url 'mypage:cancel_user_Group' %}">
+<!-- 모달 : early_close_cancel.html, 마이페이지 공동구매서 유저가 본인이 모집하는 파티의 조기 종료나 취소용 -->
+<form method="POST" action="{% url 'mypage:early_close_cancel_Group' %}">
     {% csrf_token %}
-    <div class="modal fade" id="cancel_user_group">
+    <div class="modal fade" id="early_close_cancel_group">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete</h5>
+                    <h5 class="modal-title">Early close / Delete the Party</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -38,10 +38,18 @@
                 </div>
                 <div class="modal-footer">
                     <div class="form-group row">
-                        <h4 class="col-12 text-danger">Delete your Applying(Please decide carefully)</h4>
+                        <h4 class="col-12 text-danger">Early Close your Party(Please decide carefully)</h4>
                     </div>
                     <div class="form-group row">
-                        <div class="col-4 offset-8">
+                        <div class="col-5 offset-7">
+                            <button type="submit" class="btn btn-primary">Early Close</button>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h4 class="col-12 text-danger">Delete your Party(Please decide carefully)</h4>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-5 offset-7">
                             <button type="submit" class="btn btn-primary">Delete</button>
                         </div>
                     </div>
