@@ -34,43 +34,97 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
-          {% if request.get_full_path == " " %}
-          <li class="nav-item active">
+    		  {% if request.get_full_path == "/bookmarket/" %}
+    		  <li class="nav-item">
             <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
           </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
-          {% endif %}
-          {% if request.get_full_path == "/bookmarket/" %}
           <li class="nav-item active">
             <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
           </li>
-          {% else %}
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+    		  </li>
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+    		  </li>
+    		  {% elif request.get_full_path == "/groupbuying/" %}
+    		  <li class="nav-item">
+            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
           </li>
-          {% endif %}
-					{% if request.get_full_path == "/groupbuying/" %}
-					<li class="nav-item active">
-						<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
-					</li>
-					{% else %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
-					</li>
-					{% endif %}
-					{% if request.get_full_path == "/taxipool/" %}
-					<li class="nav-item active">
-						<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
-					</li>
-					{% else %}
-					<li class="nav-item">
-						<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
-					</li>
-					{% endif %}
-        </ul>
+    		  <li class="nav-item active">
+    			<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+    		  </li>
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+    		  </li>
+    		  {% elif request.get_full_path == "/taxipool/" %}
+    		  <li class="nav-item">
+            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
+          </li>
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+    		  </li>
+    		  <li class="nav-item active">
+    			<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+    		  </li>
+          {% else %}
+    		  <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
+          </li>
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+    		  </li>
+    		  <li class="nav-item">
+    			<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+    		  </li>
+          {% endif %}          
+        </ul>          
+     <!--     {% if request.get_full_path == " " %}-->
+     <!--     <li class="nav-item active">-->
+     <!--       <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>-->
+     <!--     </li>-->
+     <!--     {% else %}-->
+     <!--     <li class="nav-item">-->
+     <!--       <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>-->
+     <!--     </li>-->
+     <!--     {% endif %}-->
+     <!--     {% if request.get_full_path == "/bookmarket/" %}-->
+     <!--     <li class="nav-item active">-->
+     <!--       <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>-->
+     <!--     </li>-->
+     <!--     {% else %}-->
+     <!--     <li class="nav-item">-->
+     <!--       <a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>-->
+     <!--     </li>-->
+     <!--     {% endif %}-->
+					<!--{% if request.get_full_path == "/groupbuying/" %}-->
+					<!--<li class="nav-item active">-->
+					<!--	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>-->
+					<!--</li>-->
+					<!--{% else %}-->
+					<!--<li class="nav-item">-->
+					<!--	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>-->
+					<!--</li>-->
+					<!--{% endif %}-->
+					<!--{% if request.get_full_path == "/taxipool/" %}-->
+					<!--<li class="nav-item active">-->
+					<!--	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>-->
+					<!--</li>-->
+					<!--{% else %}-->
+					<!--<li class="nav-item">-->
+					<!--	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>-->
+					<!--</li>-->
+					<!--{% endif %}-->
+
 
         <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
