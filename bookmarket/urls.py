@@ -6,6 +6,7 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^$', views.index, name='index'),
-    url(r'^register$', views.register_new, name='register_new'),
-    url(r'^searching', views.register_new, name='searching'),
+    url(r'^register', views.register_new, name='register_new'),
+    url(r'^searching', views.searching, name='searching'),
+    url(r'^bidding', views.bidding, name='bidding'),
 ]

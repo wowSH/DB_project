@@ -9,11 +9,11 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
         <li class="sidebar-brand">My Page</li>
-        <li><a href="#">Book Market</a></li>
-        <li><a href="#">Group Buying</a></li>
-        <li><a href="#">Taxi Pool</a></li>
-        <li><a href="#">정보 수정</a></li>
-        <li><a href="#">탈퇴</a></li>
+        <li><a href="{% url 'mypage:mp_bookmarket' %}">Book Market</a></li>
+        <li><a href="{% url 'mypage:mp_groupbuying' %}">Group Buying</a></li>
+        <li><a href="{% url 'mypage:mp_taxipool' %}">Taxi Pool</a></li>
+        <li><a style="color: #fff; background: rgba(255, 255, 255, 0.2);" href="#">Change Information</a></li>
+        <li><a href="#">Delete Account</a></li>
       </ul>
     </div>
   <!-- /사이드바 -->
@@ -22,78 +22,43 @@
   <div class="container">
     <div class="page-wrapper">
       <div class="page-content-wrapper">
-        <h1>마이페이지 - 사이드 바</h1>
-        <p>여기는 개인정보 수정창입니다.</p>
-        <p> table 띄우는 공간</p>
-        <table class="table table-condensed table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>책 제목</th>
-              <th>입찰 신청일</th>
-              <th>입찰 마감일</th>
-              <th>입찰 상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>앤프</td>
-              <td>5. 27</td>
-              <td>6. 13</td>
-              <td>입찰 중(1순위, 후순위)(취소버튼)</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>일반 물리학</td>
-              <td>5. 31</td>
-              <td>6. 3</td>
-              <td>입찰 성공(등록자 확인 버튼)</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>장고로 배우는 웹 프로그래밍</td>
-              <td>5. 21</td>
-              <td>5. 27</td>
-              <td>입찰 실패(후순위)</td>
-            </tr>
-          </tbody>
-        </table>
-        <p></p>
-        <table class="table table-condensed table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>책 제목</th>
-              <th>입찰 등록일</th>
-              <th>입찰 마감일</th>
-              <th>입찰 상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>앤프</td>
-              <td>5. 27</td>
-              <td>6. 13</td>
-              <td>입찰 중 [조기 마갑, 취소 버튼]</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>일반 화학 2</td>
-              <td>5. 31</td>
-              <td>6. 3</td>
-              <td>정상 마감 [구매자 확인 버튼]</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>세계와 글로벌 경제 원서</td>
-              <td>5. 21</td>
-              <td>5. 27</td>
-              <td>유찰</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="changeinfo_mr">
+          {% if not user.is_authenticated %}
+            <div class="modal-body">
+              <p>You have to log in to proceed.</p>
+              <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" role="button">Login</a>
+            </div>
+          {% else %}
+          <h3> Your Nickname / HP (Or Base E-mail / HP) </h3>
+          <h4> ☞  &nbsp;<span class="text-warning">wnrnrdl@naver.com </span> / <span class="text-warning">010-xxxx-xxxx</span>(Need to set)</h4>
+        <form>
+          <div class="form-group row">
+              <label for="example-text-input" class="col-4 col-form-label">New Nickname</label>
+              <div class="col-8">
+                  <input class="form-control" type="text" placeholder="Enter 12 or fewer non-special characters" id="example-text-input" name="nickname">
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="example-text-input" class="col-4 col-form-label">H.P</label>
+              <div class="col-8">
+                  <input class="form-control" type="text" placeholder="Enter only 12 digits except '-'" id="example-text-input" name="HP">
+              </div>
+          </div>
+          <div class="form-group row">
+            <button type="submit" class="btn btn-info col-3 offset-8">Submit</button>
+          </div>
+        </form>
+          {% endif %}
+          <!--<form class="form-inline">-->
+          <!--  <div class="form-group has-success has-feedback">-->
+          <!--    <label class="col-sm-6 control-label" for="inputSuccess"><strong>Input your new Nickname.</strong></label>-->
+          <!--    <div class="col-sm-8">-->
+          <!--      <input type="text" class="form-control" id="inputSuccess">-->
+          <!--      <button type="submit" class="btn btn-info">Submit</button>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</form>-->
+        </div>
       </div>
     <!-- /본문 -->
     </div>

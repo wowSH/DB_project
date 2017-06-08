@@ -9,91 +9,110 @@
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
         <li class="sidebar-brand">My Page</li>
-        <li><a href="#">Book Market</a></li>
-        <li><a class="active" href="#">Group Buying</a></li>
-        <li><a href="#">Taxi Pool</a></li>
-        <li><a href="#">정보 수정</a></li>
-        <li><a href="#">탈퇴</a></li>
+        <li><a href="{% url 'mypage:mp_bookmarket' %}">Book Market</a></li>
+        <li><a style="color: #fff; background: rgba(255, 255, 255, 0.2);" href="#">Group Buying</a></li>
+        <li><a href="{% url 'mypage:mp_taxipool' %}">Taxi Pool</a></li>
+        <li><a href="{% url 'mypage:changeinfo' %}">Change Information</a></li>
+        <li><a href="#">Delete Account</a></li>
       </ul>
     </div>
   <!-- /사이드바 -->
   
   <!-- 본문 -->
-  <div class="container">
+  <div class="container_mp">
     <div class="page-wrapper">
       <div class="page-content-wrapper">
-        <h1>마이페이지 - 사이드 바</h1>
-        <p>여기는 공동 구매 창입니다.</p>
-        <p> table 띄우는 공간</p>
-        <table class="table table-condensed table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>책 제목</th>
-              <th>입찰 신청일</th>
-              <th>입찰 마감일</th>
-              <th>입찰 상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>앤프</td>
-              <td>5. 27</td>
-              <td>6. 13</td>
-              <td>입찰 중(1순위, 후순위)(취소버튼)</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>일반 물리학</td>
-              <td>5. 31</td>
-              <td>6. 3</td>
-              <td>입찰 성공(등록자 확인 버튼)</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>장고로 배우는 웹 프로그래밍</td>
-              <td>5. 21</td>
-              <td>5. 27</td>
-              <td>입찰 실패(후순위)</td>
-            </tr>
-          </tbody>
-        </table>
-        <p></p>
-        <table class="table table-condensed table-hover table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>책 제목</th>
-              <th>입찰 등록일</th>
-              <th>입찰 마감일</th>
-              <th>입찰 상태</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>앤프</td>
-              <td>5. 27</td>
-              <td>6. 13</td>
-              <td>입찰 중 [조기 마갑, 취소 버튼]</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>일반 화학 2</td>
-              <td>5. 31</td>
-              <td>6. 3</td>
-              <td>정상 마감 [구매자 확인 버튼]</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>세계와 글로벌 경제 원서</td>
-              <td>5. 21</td>
-              <td>5. 27</td>
-              <td>유찰</td>
-            </tr>
-          </tbody>
-        </table>
+        <h1>MyPage - Group Buying</h1>
+        <h3 class="text-center"> Group Buying : Apply Status</h3>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Apply date</th>
+                <th>Closing Date</th>
+                <th>Number of Person(Limit)</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>오늘 밤 야식 파티 모집합니다!!</td>
+                <td>6. 5</td>
+                <td>6. 5</td>
+                <td>2 / 3</td>
+                <td>Applying<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to cancel</td>
+                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>화장품 공동구매해요!</td>
+                <td>5. 31</td>
+                <td>6. 7</td>
+                <td>3 / 4</td>
+                <td>Applying failed(canceled) </td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>I found group purchase for vitamin!!</td>
+                <td>5. 21</td>
+                <td>6. 2</td>
+                <td>10 / 10</td>
+                <td>Applying success<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the party opener</td>
+                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h3 class="text-center"> Group Buying : Party Open Status</h3>
+        <div class="table-responsive">        
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Open date</th>
+                <th>Closing Date</th>
+                <th>Number of Person(Limit)</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>6월 9일 피자 배달비 나누실 분!</td>
+                <td>6. 5</td>
+                <td>6. 9</td>
+                <td>0 / 3</td>
+                <td>Recruiting<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to close early or cancel</td>
+                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>핸드폰 케이스 공동구매 모집합니다. </td>
+                <td>5. 31</td>
+                <td>6. 2</td>
+                <td>7 / 7</td>
+                <td>Successfull Finish<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the applicant </td>
+                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>5월 7일 피자 배달비 나누실 분!</td>
+                <td>5. 3</td>
+                <td>5. 7</td>
+                <td>1 / 3</td>
+                <td>Recruiting failed</td>
+                <td> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     <!-- /본문 -->
     </div>

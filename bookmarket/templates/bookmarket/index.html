@@ -7,15 +7,14 @@
     </div>
     <form method="POST" action="{% url 'bookmarket:searching' %}">
     {% csrf_token %}
-
     <div class="row justify-content-md-center"> <!-- for search box -->
 
         <div class="col-md-2">
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="category">
-                <option selected value="1" >Major English</option>
-                <option value="2">Major Korean</option>
-                <option value="3">Liberal Arts</option>
-                <option value="4">ETC</option>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="selected_category">
+                <option selected value="Major English">Major English</option>
+                <option value="Major Korean">Major Korean</option>
+                <option value="Liberal Arts">Liberal Arts</option>
+                <option value="ETC">ETC</option>
             </select>
         </div>
          <div class="col-md-6">
@@ -29,15 +28,17 @@
             </div>
         </div>
     </form>
+    
         <div class="col-md-4">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{% if user.is_authenticated %}#register{% else %}#alarm_login{% endif %}">Register</button>
         </div>
 
-        {% include 'bookmarket/modals/register.html' %}
-        {% include 'modals/alarm_login.html' %}
+        
 
     </div>
-    
+    {% include 'bookmarket/modals/register.html' %}
+    {% include 'modals/alarm_login.html' %}
+        
     
     <div class="row">  table 
 
