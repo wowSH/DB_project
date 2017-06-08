@@ -31,7 +31,6 @@ def user_directory_path(instance, filename):
     e.g) 
         images/{year}/{month}/{day}/{username}/{filename} 
         images/2016/7/12/hjh/hjh-2016-07-12-158859.png 
-
     
     now = datetime.datetime.now() 
     path = "images/{year}/{month}/{day}/{username}/{filename}".format( 
@@ -95,4 +94,3 @@ class Bid_Candidate(models.Model):
     
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product_Register, on_delete=models.CASCADE)
-

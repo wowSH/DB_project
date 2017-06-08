@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^mp_groupbuying/$', views.mp_groupbuying, name="mp_groupbuying"),
     url(r'^mp_taxipool/$', views.mp_taxipool, name="mp_taxipool"),
     
-    url(r'^detail/$', views.detail, name="detail"),
+    # url(r'^detail/$', views.detail, name="detail"),
     
     # url(r'^backout/$', views.backout, name="backout"),
     # url(r'^bookmarket/$', views.bookmarket, name="bookmarket"),
