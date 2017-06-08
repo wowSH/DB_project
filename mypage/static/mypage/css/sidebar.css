@@ -4,11 +4,12 @@
 
 #sidebar-wrapper {
   position: fixed;
-  top: 54px;
+  top: 10vh;
   left: 0;
   width: 250px;
   height: 100%;
-  background: #000;
+  /*background: #000;*/
+  background : linear-gradient(to bottom, rgba(59, 58, 54, 0.8), #c0dfd9);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -36,12 +37,12 @@
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999;
+  color: #fff;
 }
 
 .sidebar-nav li a:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  color: #fff; 
+  background: rgba(0, 0, 0, 0.9);
 }
 
 .sidebar-nav > .sidebar-brand {

@@ -28,6 +28,6 @@
 .next_search > .form-inline {
     position : absolute;
 	top:50%;
-	left:47%;
+	left:50%;
 	transform: translate(-50%, -50%);
 }
