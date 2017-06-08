@@ -51,12 +51,6 @@ def user_directory_path(instance, filename):
     )
     return path
     
-class Seller (models.Model):
-    name = models.CharField(max_length = 40)
-    hp = models.CharField(max_length = 40)
-
-    def __str__(self):
-        return self.s_name
 
 class Product_Register(models.Model):
     title = models.CharField(max_length = 40)
@@ -70,20 +64,20 @@ class Product_Register(models.Model):
         (LIBERAL, 'Liberal'),
         (ETC, 'Etc'),
     )
-    category = models.CharField(max_length = 40, choices = CTCHOICE,default = ETC)
+    category = models.CharField(max_length = 40, choices = CTCHOICE, default = ETC)
     author = models.CharField(max_length = 40, null=True)
     subject = models.CharField(max_length = 40)
     state = models.CharField(max_length = 5)
-    condition = models.CharField(max_length = 5)
-    register_date = models.DateTimeField()
+    condition = models.CharField(max_length = 10, default="selling")
+    register_date = models.DateTimeField(default = datetime.datetime.now())
     init_price = models.IntegerField()
     imm_price = models.IntegerField()
+    current_price = models.IntegerField(default = 0)
     closing_date = models.DateTimeField()
 
     #image = models.ImageField(upload_to=user_directory_path, default =0)
     image = ProcessedImageField(
         upload_to=user_directory_path,
-        #upload_to='images/bookmarket/'+id,
         processors=[ResizeToFill(160, 160)],
         format='JPEG',
         options={'quality': 60}
@@ -93,23 +87,12 @@ class Product_Register(models.Model):
     def __str__(self):
         return self.title +"/"+ self.state
 
-class Candidate(models.Model):
-    name = models.CharField(max_length = 40)
-    hp = models.IntegerField(default=0)
-
-    bidding = models.ManyToManyField(Product_Register, through='Bid')
-    
-    def __str__(self):
-        return self.c_name
 
 
-class Bid(models.Model):
+class Bid_Candidate(models.Model):
     bid_date = models.DateTimeField()
     bid_price = models.IntegerField()
-    priority = models.IntegerField()
-
+    
+    buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product_Register, on_delete=models.CASCADE)
-    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
- 
-
 

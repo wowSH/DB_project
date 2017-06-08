@@ -32,35 +32,27 @@
                 <th>Title</th>
                 <th>Bid date</th>
                 <th>Closing Date</th>
+                <th>Current <i class="fa fa-krw" aria-hidden="true"></i></th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+              {% if bid_rank_list %}
+                {% for ranking, bidded in bid_rank_list %}
               <tr>
-                <td>1</td>
-                <td>앤프</td>
-                <td>5. 27</td>
-                <td>6. 13</td>
-                <td>Bidding(1st place)<br>Bidding(Not 1st place)<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to bid or cancel</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ bidded }}</td>
+                <td>{{ bidded.bid_date|date:"d/M/Y" }}</td>
+                <td>{{ bidded.closing_date|date:"d/M/Y" }}</td>
+                <td>{{ bidded.current_price }}</td>
+                <td>{% if bidded.condition == "selling" or bidded.condition == '' %}{% if ranking %}1 st{% else %}NOT 1st {% endif %}{% else %} {{ bidded.condition}} {% endif %}</td>
+                <td><button type="button" data-toggle="modal" data-target="{% if user.is_authenticated %}#bid_detail{{ forloop.counter }}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>General Physics 1</td>
-                <td>5. 31</td>
-                <td>6. 3</td>
-                <td>Bidding Success<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the register </td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>장고로 배우는 웹 프로그래밍</td>
-                <td>5. 21</td>
-                <td>5. 27</td>
-                <td>Bidding failed(Not 1st place)<br>Bidding failed(Auction canceled)</td>
-                <td></td>
-              </tr>
+                {% include 'mypage/mp_bookmarket/bid_detail.html' with bid=bidded %}
+                {% endfor %}
+              {% endif%}
             </tbody>
           </table>
         </div>
@@ -75,36 +67,25 @@
                 <th>Closing Date</th>
                 <th>Status</th>
                 <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+              {% if products %}
+                {% for p in products %}
               <tr>
-                <td>1</td>
-                <td>Calculus 2</td>
-                <td>5. 27</td>
-                <td>6. 13</td>
-                <td>At Auction<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to close early or cancel </td>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ p.title }}</td>
+                <td>{{ p.register_date|date:"d/M/Y" }}</td>
+                <td>{{ p.closing_date|date:"d/M/Y" }}</td>
+                <td>{% if p.condition == "selling" or p.condition == '' %}At Aution{% else %} {{ bidded.condition}} {% endif %}</td>
                 <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Oriented Object Programming </td>
-                <td>5. 31</td>
-                <td>6. 3</td>
-                <td>Successfull Finish<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the buyer </td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>세계와 글로벌 경제 원서</td>
-                <td>5. 21</td>
-                <td>5. 27</td>
-                <td>miscarriage of auction</td>
-                <td> </td>
-              </tr>
+                {% endfor %}
+              {% endif%}
             </tbody>
           </table>
-        </div>
       </div>
     <!-- /본문 -->
     </div>

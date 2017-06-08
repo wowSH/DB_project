@@ -23,8 +23,15 @@
     <div class="page-wrapper">
       <div class="page-content-wrapper">
         <div class="changeinfo_mr">
+          {% if not user.is_authenticated %}
+            <div class="modal-body">
+              <p>You have to log in to proceed.</p>
+              <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" role="button">Login</a>
+            </div>
+          {% else %}
           <h3> Your Nickname / HP (Or Base E-mail / HP) </h3>
           <h4> ☞  &nbsp;<span class="text-warning">wnrnrdl@naver.com </span> / <span class="text-warning">010-xxxx-xxxx</span>(Need to set)</h4>
+        <form>
           <div class="form-group row">
               <label for="example-text-input" class="col-4 col-form-label">New Nickname</label>
               <div class="col-8">
@@ -40,6 +47,8 @@
           <div class="form-group row">
             <button type="submit" class="btn btn-info col-3 offset-8">Submit</button>
           </div>
+        </form>
+          {% endif %}
           <!--<form class="form-inline">-->
           <!--  <div class="form-group has-success has-feedback">-->
           <!--    <label class="col-sm-6 control-label" for="inputSuccess"><strong>Input your new Nickname.</strong></label>-->
