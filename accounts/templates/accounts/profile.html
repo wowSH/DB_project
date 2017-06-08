@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="margin-top:100px;">
+    <form class="form-signin">
+        <h2 class="form-signin-heading">Please type in</h2>
+        <label for="inputEmail" class="sr-only">Nickname</label>
+        <input type="text" class="form-control" placeholder="Nickname" required autofocus>
+        <label for="inputPassword" class="sr-only">H.P</label>
+        
+        <div class="row">
+            <div class="col-md-4"><input type="text" class="form-control" placeholder="010" required autofocus></div>
+            <div class="col-md-4"><input type="text" class="form-control" placeholder="123" required autofocus></div>
+            <div class="col-md-4"><input type="text" class="form-control" placeholder="456" required autofocus></div>
+         
+        </div>
+        
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+</div> <!-- /container -->
+
+{% endblock %}

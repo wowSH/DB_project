@@ -33,7 +33,7 @@ def user_directory_path(instance, filename):
     return path
 
 # Create your models here.
-class Seeker (User):
+class Seeker (models.Model):
     name = models.CharField(max_length = 40)
     hp = models.IntegerField(default = 0)
 
@@ -60,7 +60,7 @@ class Seek_Taxi(models.Model):
     num_person = models.IntegerField()
     content = models.CharField(max_length = 100)
 
-    seeker = models.ForeignKey(Seeker, on_delete = models.CASCADE)
+    seeker = models.ForeignKey(User, on_delete = models.CASCADE)
     def __str__(self):
         return self.departure + " / " + self.destination
 

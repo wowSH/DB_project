@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -8,44 +10,53 @@ import os
 
 # Create your models here.
 
-
 #http://hjh5488.tistory.com/12
-def set_filename_format(now, instance, filename):
-    """ file format setting
-    e.g)
-        {username}-{date}-{microsecond}{extension} hjh-2016-07-12-158859.png
-    """
-    return "{username}-{date}-{microsecond}{extension}".format(
-        username=instance.user.username,
-        date=str(now.date()),
-        microsecond=now.microsecond,
-        extension=os.path.splitext(filename)[1],
+def set_filename_format(now, instance, filename): 
+    """ file format setting 
+    e.g) 
+        {username}-{date}-{microsecond}{extension} hjh-2016-07-12-158859.png 
+    """ 
+    #return "{username}-{date}-{microsecond}{extension}".format( 
+    return "{username}-{date}-{microsecond}{extension}".format( 
+        username=instance.seller.username, 
+        p_id = str(instance.id),
+        date=str(now.date()), 
+        microsecond=now.microsecond, 
+        extension=os.path.splitext(filename)[1], 
     )
 
-def user_directory_path(instance, filename):
+def user_directory_path(instance, filename): 
+    """ 
+    image upload directory setting 
+    e.g) 
+        images/{year}/{month}/{day}/{username}/{filename} 
+        images/2016/7/12/hjh/hjh-2016-07-12-158859.png 
+
+    
+    now = datetime.datetime.now() 
+    path = "images/{year}/{month}/{day}/{username}/{filename}".format( 
+        year=now.year, 
+        month=now.month, 
+        day=now.day, 
+        username=instance.seller.username, 
+        filename=set_filename_format(now, instance, filename), 
+    )
     """
-    image upload directory setting
-    e.g)
-        images/{year}/{month}/{day}/{username}/{filename}
-        images/2016/7/12/hjh/hjh-2016-07-12-158859.png
-    """
-    now = datetime.datetime.now()
-    path = "images/{year}/{month}/{day}/{username}/{filename}".format(
-        year=now.year,
-        month=now.month,
-        day=now.day,
-        username=instance.user.username,
-        filename=set_filename_format(now, instance, filename),
+    now = datetime.datetime.now() 
+    path = "images/bookmarket/{filename}".format( 
+        year=now.year, 
+        month=now.month, 
+        day=now.day, 
+        filename=set_filename_format(now, instance, filename), 
     )
     return path
-
-
+    
 class Seller (models.Model):
     name = models.CharField(max_length = 40)
     hp = models.CharField(max_length = 40)
 
     def __str__(self):
-        return self.name
+        return self.s_name
 
 class Product_Register(models.Model):
     title = models.CharField(max_length = 40)
@@ -69,7 +80,14 @@ class Product_Register(models.Model):
     imm_price = models.IntegerField()
     closing_date = models.DateTimeField()
 
-    image = models.ImageField(upload_to=user_directory_path, default =0)
+    #image = models.ImageField(upload_to=user_directory_path, default =0)
+    image = ProcessedImageField(
+        upload_to=user_directory_path,
+        #upload_to='images/bookmarket/'+id,
+        processors=[ResizeToFill(160, 160)],
+        format='JPEG',
+        options={'quality': 60}
+    )
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -79,12 +97,10 @@ class Candidate(models.Model):
     name = models.CharField(max_length = 40)
     hp = models.IntegerField(default=0)
 
-
     bidding = models.ManyToManyField(Product_Register, through='Bid')
-
+    
     def __str__(self):
-        return self.name
-
+        return self.c_name
 
 
 class Bid(models.Model):
@@ -94,3 +110,6 @@ class Bid(models.Model):
 
     product = models.ForeignKey(Product_Register, on_delete=models.CASCADE)
     candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+ 
+
+

@@ -14,9 +14,10 @@ import json
 
 from django.core.exceptions import ImproperlyConfigured
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+PROJECT_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def get_env(setting, envs):
     try:
@@ -55,20 +56,20 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
     'fields' : 'id, name, email'
 }
-"""
+
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
     'social_core.pipeline.social_auth.social_user',
     'social_core.pipeline.user.get_username',
-    'path.to.pick_character_name',
     'social_core.pipeline.user.create_user',
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
+    'accounts.pipeline.save_profile',  # <--- set the path to the function
+#    'accounts.views.profile'
 )
-"""
 
 
 # Quick-start development settings - unsuitable for production
@@ -146,10 +147,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #        'ENGINE': 'django.db.backends.mysql',
 #        'NAME': 'moau2',
-#       'USER': 'dbproject',
-#        'PASSWORD': '123',
-    #    'HOST': 'localhost',
-    #    'PORT': '3306',
+        'USER': 'dbproject',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
@@ -190,6 +191,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -211,3 +213,23 @@ AUTHENTICATION_BACKENDS = [
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 LOGIN_REDIRECT_URL = '/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"
+
+
+
+
+print ('BASE_DIR:\t{}'.format(BASE_DIR))
+print ('PROJECT_DIR:\t{}'.format(PROJECT_DIR))
+print (STATIC_ROOT)
+print ('static files:\t{}'.format(STATICFILES_DIRS))
+print ('media url:\t{}'.format(MEDIA_URL))
+print ('MEDIA_ROOT:\t{}'.format(MEDIA_ROOT))
+
+
+
+try:
+    from local_settings import *
+except:
+    pass
