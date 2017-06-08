@@ -3,9 +3,10 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  padding-top: 3rem;
+  padding-top: 10vh;
   padding-bottom: 3rem;
   color: #5a5a5a;
+  background-color: rgba(227, 251, 255, 0.4);
 }
 
 
@@ -123,8 +124,4 @@ body {
 
 .carousel-item > img {
   -webkit-filter: brightness(.45);
-}
-
-.navbar-collapse {
-  justify-content : flex-end;
 }

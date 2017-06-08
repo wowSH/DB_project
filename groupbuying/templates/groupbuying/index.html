@@ -1,91 +1,51 @@
 {% extends "base.html" %}
 
-{% block content %}
-<div class="container"style="margin-top:100px">
+{% load staticfiles %}
 
-    <div class="row justify-content-md-center">
-    </div>
-    <div class="row justify-content-md-center"> <!-- for search box -->
-        <div class="col-md-2">
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                <option selected>Category</option>
-                <option value="1">Delivery</option>
-                <option value="2">Cosmetic</option>
-                <option value="3">Electronic</option>
-                <option value="4">ETC</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="" />
-                <div class="input-group-btn">
-                    <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+{% block content %}
+</div>
+<div class="jumbotron jumbo_group">
+    <div class="container">
+        <form method="POST" action="#"><!-- url 'groupbuying:searching' -->
+            <div class="row justify-content-md-center"> <!-- for search box -->
+            {% csrf_token %}
+                <div class="col-md-2">
+                    <select class="form-control input-lg mb-2 mr-sm-2 mb-sm-0" name="selected_category" style="height: 100%;">
+                        <option selected value="Delivery">Delivery</option>
+                        <option value="Cosmetic">Cosmetic</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="ETC">ETC</option>
+                    </select>
+                </div>
+                <div class="col-md-7">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control" placeholder="EX) Pizza / Chicken ..." name="keyword" />
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <button type="submmit" class="btn btn-primary btn-lg"><i class="fa fa-search" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </form>
+        <div class="row justify-content-md-center"> 
+            <div class="col-md-12 next_search">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label><h2 class="text-uppercase" style="color:#fff"> <strong>Open your Party</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="{% if user.is_authenticated %}}#open{% else %}#alarm_login{% endif %}">Open</button>
+                    </div>
+                </form>
+            </div>
         </div>
-
-        <div class="col-md-4">
-            <form class="form-inline">
-                <h6 class="text-uppercase"> <strong>Open your Party</strong>&nbsp;&nbsp;&nbsp;</h6>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{% if user.is_authenticated %}#open{% else %}#alarm_login{% endif %}">Open</button>
-            </form>
-        </div>
+    </div>
+</div>
 
         {% include 'groupbuying/modals/open.html' %}
         {% include 'modals/alarm_login.html' %}
 
-
-
-    </div>
-    <div class="row"> <!-- for visualization -->
-        Visualation 
-    </div>
-    <div class="row"> <!-- table -->
-        <table class="table table-striped ">
-          <thead>
-            <tr>
-              <th>Category</th>
-              <th>Title</th>
-              <th>Applied</th>
-              <th>Recurited</th>
-              <th>End Date</th>
-              <th>State</th>
-              <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td><i class="fa fa-plus-circle" aria-hidden="true"></i></td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
+<div class="container">
+    <!-- 실제 테이블 들어가면 됨-->
 </div>
-{% for i in "12" %} <h2 style="text-indent:9999px;">blank</h2> {% endfor %}
 {% endblock content %}

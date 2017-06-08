@@ -1,0 +1,44 @@
+	  .nav-item > a {
+      color:#000 !important;
+      padding: 1px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    .active > a{
+      color:#EA53FF !important;
+      font-weight: bold;
+      border-bottom : 2px solid #EA53FF;
+      border-radius : 5px;
+    }
+    @media (max-width: 992px) {
+      .nav-item > a {
+         font-size: 1rem;
+      }
+      .nav-link {
+        display: inline-block;
+      }
+    }
+    @media (min-width: 992px) and (max-width: 1200px) {
+      .nav-item > a {
+         font-size: 1rem;
+      }
+    }
+    
+    .navbar {
+      border-bottom: 1px solid #d2d6d5 !important;
+      height : 10vh !important;
+    }
+    .nav-color {
+      background-color: rgba(227, 243, 253, 0.75) !important;
+    }
+    .icon-bar .navbar-toggle .navbar-brand:focus, .navbar-brand .navbar-brand:hover, .navbar-inverse .navbar-toggle:focus, .navbar-toggle-right .navbar-toggle:hover fa{
+     background-color: black !important;
+      color: black !important;
+    }
+    h2.navbar-brand {
+      border-top : 2px solid #FF384E;
+      border-bottom : 2px solid #FF384E;
+      border-radius : 5px;
+      color : #FF384E !important;
+      font-weight : bold;
+    }

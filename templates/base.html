@@ -10,90 +10,93 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <!-- fontawesome cdn -->
 	<script src="https://use.fontawesome.com/c54db0b87f.js"></script>
-
-
+  <!-- static JS -->
 	<script src="{% static 'js/base.js' %}"></script>
-
+  <!-- static css of base nav -->
+	<link rel="stylesheet" href="{% static '../static/css/base_nav.css' %}">
+  <!-- static css of home -->
 	<link rel="stylesheet" href="{% static 'home/css/carousel.css' %}">
+	<!-- static css of mypage -->
 	<link rel="stylesheet" href="{% static 'mypage/css/sidebar.css' %}">
-	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bree+Serif">
+	<!-- static css of bookmarket -->
+	<link rel="stylesheet" href="{% static 'bookmarket/css/jumbo_book.css' %}">
+	<!-- static css of groupbuying -->
+	<link rel="stylesheet" href="{% static 'groupbuying/css/jumbo_group.css' %}">	
+	<!-- static css of taxipool -->	
+	<link rel="stylesheet" href="{% static 'taxipool/css/jumbo_taxi.css' %}">	
 
-	<style type="text/css">
-    .active > a{
-      color:#EA53FF !important;
-      font-weight: bold;
-    }
-  </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <p class="navbar-brand" style="color : #FF384E; font-weight : bold;">MoaU</p>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-          {% if request.get_full_path != "/bookmarket/" and request.get_full_path != "/groupbuying/" and request.get_full_path != "/taxipool/" and request.path|slice:":7" != '/mypage'%}
-          <li class="nav-item active">
-          	<a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top nav-color" style="background-color: #e3f2fd;">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <h2 class="navbar-brand">moaU</h2>
+  
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            {% if request.get_full_path != "/bookmarket/" and request.get_full_path != "/groupbuying/" and request.get_full_path != "/taxipool/" and request.path|slice:":7" != '/mypage'%}
+            <li class="nav-item active">
+            	<a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            	<a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            {% endif %}
+            {% if request.get_full_path == "/bookmarket/" %}
+            <li class="nav-item active">
+            	<a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            	<a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
+            </li>
+            {% endif %}
+            {% if request.get_full_path == "/groupbuying/" %}
+            <li class="nav-item active">
+            	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
+            </li>
+            {% endif %}
+            {% if request.get_full_path == "/taxipool/" %}
+            <li class="nav-item active">
+            	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+            	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
+            </li>
+            {% endif %}
+          </ul>          
+  
+          <ul class="nav navbar-nav navbar-right">
+          {% if user.is_authenticated %}
+            <li>
+              <p class="navbar-text" style="color:#000;"><strong>Welcome!&nbsp; </strong> {{ user.email }}</p>
+              &nbsp;&nbsp;
+            </li>
+            <li>
+              <a href="{% url 'mypage:changeinfo' %}"><button class="btn btn-primary">Mypage</button></a>
+              &nbsp;&nbsp;
+            </li>
+            <li style="color: rgba(0, 0, 0, 0);">o</li>
+            <li>
+              <a href="{% url 'accounts:logout' %}?next={{request.path}}"><button class="btn btn-primary">Logout</button></a>
+            </li>
+          </ul>
           {% else %}
-          <li class="nav-item">
-          	<a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
-          </li>
+            <li>
+              <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}"><button class="btn btn-primary">Login</button></a>
+            </li>
+          </ul>
           {% endif %}
-          {% if request.get_full_path == "/bookmarket/" %}
-          <li class="nav-item active">
-          	<a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-          	<a class="nav-link" href="{% url 'bookmarket:index' %}">Book Market</a>
-          </li>
-          {% endif %}
-          {% if request.get_full_path == "/groupbuying/" %}
-          <li class="nav-item active">
-          	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-          	<a class="nav-link" href="{% url 'groupbuying:index' %}">Group Buying</a>
-          </li>
-          {% endif %}
-          {% if request.get_full_path == "/taxipool/" %}
-          <li class="nav-item active">
-          	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-          	<a class="nav-link" href="{% url 'taxipool:index' %}">Taxi pool</a>
-          </li>
-          {% endif %}
-        </ul>          
-
-        <ul class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-          <li>
-            <p class="navbar-text"><strong>Welcome!&nbsp; </strong> {{ user.email }}</p>
-            &nbsp;&nbsp;
-          </li>
-          <li>
-            <a href="{% url 'mypage:changeinfo' %}"><button class="btn btn-primary">Mypage</button></a>
-            &nbsp;&nbsp;
-          </li>
-          <li style="color: rgb(41, 43, 44);">o</li>
-          <li>
-            <a href="{% url 'accounts:logout' %}?next={{request.path}}"><button class="btn btn-primary">Logout</button></a>
-          </li>
-        </ul>
-        {% else %}
-          <li>
-            <a href="{% url 'social:begin' 'facebook' %}?next={{request.path}}"><button class="btn btn-primary">Login</button></a>
-          </li>
-        </ul>
-        {% endif %}
+        </div>
       </div>
     </nav>
 
