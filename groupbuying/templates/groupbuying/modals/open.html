@@ -1,0 +1,63 @@
+<form method="POST" action="{% url 'groupbuying:open_new' %}">
+    {% csrf_token %}
+    <div class="modal fade" id="open">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Open your Party</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Category</label>
+                        <div class="col-10">
+                            <select class="form-control" id="exampleSelect1" name="category">
+                                <option value="Delivery">Delivery</option>
+                                <option value="Cosmetic">Cosmetic</option>
+                                <option value="Electronic">Electronic</option>
+                                <option value="ETC">ETC</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Title</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="" id="example-text-input" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Recruiting P.N</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="" id="example-text-input" name="num_person">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-2 col-form-label">Due Date</label>
+                        <div class="col-10">
+                            <input class="form-control" type="date" value="{% now "Y-m-d" %}" id="example-date-input" name="closing_date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Content</label>
+                        <div class="col-10">
+                            <input class="form-control" type="textarea" placeholder="" id="example-text-input" name="content">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Image</label>
+                        <div class="col-10">
+                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="image">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Open</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,8 +1,12 @@
-from django.conf.urls import url
-from bookmarket import views
- 
+from django.conf.urls import include, url
+from . import views
 urlpatterns = [
-    url(r'^$', views.index),
-    url(r'^register', views.register),
-    url(r'^bid', views.bid),
+    # Examples:
+    # url(r'^$', 'mysite.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+
+    url(r'^$', views.index, name='index'),
+    url(r'^register$', views.register_new, name='register_new'),
+    url(r'^searching$', views.Searching, name='Searching'),
+    url(r'^bidding$', views.bidding, name='bidding'),
 ]

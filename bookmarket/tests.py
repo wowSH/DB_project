@@ -1,3 +1,20 @@
-from django.test import TestCase
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
 
-# Create your tests here.
+###########################################################
+def index(request):
+    return HttpResponse("bookmarket")
+
+###########################################################
+
+###########################################################
+def register (request):
+    return
+###########################################################
+
+###########################################################
+def bid (request):
+    return
+
+###########################################################

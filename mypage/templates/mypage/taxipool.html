@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<!-- 마이페이지 : taxipool 화면-->
+
+  <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">My Page</li>
+        <li><a href="{% url 'mypage:mp_bookmarket' %}">Book Market</a></li>
+        <li><a href="{% url 'mypage:mp_groupbuying' %}">Group Buying</a></li>
+        <li><a style="color: #fff; background: rgba(255, 255, 255, 0.2);" href="#">Taxi Pool</a></li>
+        <li><a href="{% url 'mypage:changeinfo' %}">Change Information</a></li>
+        <li><a href="#">Delete Account</a></li>
+      </ul>
+    </div>
+  <!-- /사이드바 -->
+  
+  <!-- 본문 -->
+  <div class="container_mp">
+    <div class="page-wrapper">
+      <div class="page-content-wrapper">
+        <h1>MyPage - Taxi Pool</h1>
+        <h3 class="text-center"> Taxi Pool : Attend Status</h3>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>NO.</th>
+                <th>Departure time</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Number of Person<br>(Limit)</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if attended_taxis %}
+                {% for attend in attended_taxis %}
+              <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ attend.depart_date}} {{ attend.depart_time }}</td>
+                <td>{{ attend.departure }}</td>
+                <td>{{ attend.destination }}</td>
+                <td>{{ attend.now_person }} / {{ attend.num_person }}</td>
+                <td>{{ attend.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#attend_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              </tr>
+                {% include 'mypage/mp_taxipool/attend_detail.html' with attend=attend %}
+                {% endfor %}
+              {% endif%}
+              
+            </tbody>
+          </table>
+        </div>
+        <h3 class="text-center"> Taxi Pool : Seek Status</h3>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>NO.</th>
+                <th>Departure time</th>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Number of Person<br>(Limit)</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if sought_taxis %}
+                {% for seek in sought_taxis %}
+              <tr>
+                <td>{{ seek.id}}</td>
+                <td>{{ seek.depart_date}} {{ seek.depart_time }}</td>
+                <td>{{ seek.departure }}</td>
+                <td>{{ seek.destination }}</td>
+                <td>{{ seek.now_person }} / {{ seek.num_person }}</td>
+                <td>{{ seek.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#seek_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              </tr>
+                {% include 'mypage/mp_taxipool/seek_detail.html' with seek=seek %}
+                {% endfor %}
+              {% endif%}
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <!-- /본문 -->
+    </div>
+  </div>
+{% endblock content %}

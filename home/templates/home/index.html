@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% load staticfiles %}
-
 {% block content %}
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -12,35 +10,32 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
-          <img class="first-slide" src="{% static 'home/images/carousel_1.jpg' %}" alt="First slide">
+          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
           <div class="container">
-            <div class="carousel-caption d-none d-sm-block">
-              <h1> <span class="red">m</span>arket <span class="red">o</span>f <span class="red">a</span>ll for <span class="red">U</span>nist! </h1>
-              <h3> moaU로 당신의 고민을 해결하세요! </h3>
-              <p class="hidden-xs"> moaU는 일상생활 속 합리적인 경제 활동을 위한 여러 기능을 서비스합니다 </p>
-              <p><a class="btn btn-md btn-primary" href="#" role="button">회원가입 / 로그인</a></p>
+            <div class="carousel-caption d-none d-md-block text-left">
+              <h1>Example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <img class="second-slide" src="{% static 'home/images/carousel_2.jpeg' %}" alt="Second slide">
+          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
           <div class="container">
-            <div class="carousel-caption d-none d-sm-block">
-              <h1> <span class="red">m</span>arket <span class="red">o</span>f <span class="red">a</span>ll for <span class="red">U</span>nist! </h1>
-              <h3> moaU의 세 가지 기능을 직접 확인하세요! </h3>
-              <p class="hidden-xs"> moaU는 중고책 거래, 공동구매 인원 모집, 택시풀 인원 모집 기능을 서비스합니다 </p>
-              <p><a class="btn btn-md btn-primary" href="#" role="button">회원가입 / 로그인</a></p>
+            <div class="carousel-caption d-none d-md-block">
+              <h1>Another example headline.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
             </div>
           </div>
         </div>
         <div class="carousel-item">
-          <img class="third-slide" src="{% static 'home/images/carousel_3.jpg' %}" alt="Third slide">
+          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
           <div class="container">
-            <div class="carousel-caption d-none d-sm-block">
-              <h1> <span class="red">m</span>arket <span class="red">o</span>f <span class="red">a</span>ll for <span class="red">U</span>nist! </h1>
-              <h3> moaU의 모든 서비스는 무료로 제공됩니다! </h3>
-              <p class="hidden-xs"> moaU는 모든 기능에 대해 휴대전화 문자 알림 서비스를 제공합니다 </p>
-              <p><a class="btn btn-md btn-primary" href="#" role="button">회원가입 / 로그인</a></p>
+            <div class="carousel-caption d-none d-md-block text-right">
+              <h1>One more for good measure.</h1>
+              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
             </div>
           </div>
         </div>
@@ -65,22 +60,22 @@
       <!-- Three columns of text below the carousel -->
       <div class="row">
         <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'home/images/heading_1.jpg' %}" alt="bookmarket image" width="200" height="200">
-          <h2>중고 책 마켓</h2>
-          <p>평소 팔고 싶른 책들을 등록하고 사고 싶은 책이 등록되어 있는지 찾아보세요! moaU의 중고 책 마켓은 경매의 요소를 반영하여 경제적인 거래가 가능합니다!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">자세히 보기 &raquo;</a></p>
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'home/images/heading_2.png' %}" alt="groupbuying image>" width="200" height="200">
-          <h2>공동 구매</h2>
-          <p>보통의 식품, 전자제품, 화장품, 의류 등의 공동구매 희망자 모집부터 오늘 밤 야식 파티 모집까지!! moaU가 연결해 드립니다!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">자세히 보기 &raquo;</a></p>
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="rounded-circle" src="{% static 'home/images/heading_3.png' %}" alt="taxi pool image" width="200" height="200">
-          <h2>택시 풀</h2>
-          <p>택시를 타고 싶은데 비용을 함께 부담할 동승자를 찾으시나요? moaU 택시 풀에서 동승자를 모집하세요!</p>
-          <p><a class="btn btn-secondary" href="#" role="button">자세히 보기 &raquo;</a></p>
+          <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
       </div><!-- /.row -->
 
@@ -91,51 +86,36 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">How to?   <small class="text-danger">중고 책 마켓</small></h2>
-          <p> <br><br> </p>
-          <div class="row">
-            <p class="col-sm-12">1. 등록하고 싶은 책의 정보를 기입하고, 입찰 기한, 초기 가격과 즉시 구매가격을 결정하여 등록하세요. </p>
-            <p class="col-sm-12">2. 입찰 기간이 끝나거나, 누군가 즉시 구매를 선택하여 구매자가 결정되면 구매자의 정보를 알 수 있습니다.</p>
-            <p class="col-sm-12">3. 사고 싶은 책이 있다면 입찰하거나, 즉시 구매를 하세요. 구매자가 되시면 판매자의 정보를 알 수 있습니다.</p>
-            <p class="col-sm-12">4. 마이페이지에서 자신이 입찰하거나 등록한 물품 경매에 대한 정보 확인과 수정을 할 수 있습니다.</p>
-            <small class="text-success"><br>※  moaU 중고책 마켓은 익명을 보장합니다. 상호간 정보는 마이페이지에서 확인 가능합니다.</small>
-          </div>
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
-        <img class="col-md-5 img-responsive img-rounded" src="{% static 'home/images/step_1.jpg' %}" alt="books image">
+        <div class="col-md-5">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
       </div>
 
       <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7 push-md-5">
-          <h2 class="featurette-heading">How to?   <small class="text-danger">공동구매</small></h2>
-          <p> <br><br> </p>
-          <div class="row">
-            <p class="col-sm-12">1. 인원을 모집하고자 하는 구매 물품의 카테고리와 모집 인원, 기한을 결정하여 등록하세요. </p>
-            <p class="col-sm-12">2. 모집 기간이 끝나거나, 신청자가 모집 인원만큼 모이면 신청자들의 정보를 알 수 있습니다.</p>
-            <p class="col-sm-12">3. 관심이 있거나 매력 있는 공동구매, 야식 파티에 신청하세요! 배달비를 절감할 수 있습니다.</p>
-            <p class="col-sm-12">4. 마이페이지에서 자신이 신청하거나 등록한 인원 모집 게시물에 대한 정보 확인과 수정을 할 수 있습니다.</p>
-            <small class="text-success"><br>※  moaU 공동구매은 익명을 보장합니다. 상호간 정보는 마이페이지에서 확인 가능합니다.</small>
-          </div>
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
-        <img class="col-md-5 pull-md-7 img-responsive img-rounded" src="{% static 'home/images/step_2.gif' %}" alt="groupbuying image">
+        <div class="col-md-5 pull-md-7">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
       </div>
 
       <hr class="featurette-divider">
 
       <div class="row featurette">
         <div class="col-md-7">
-          <h2 class="featurette-heading">How to?   <small class="text-danger">택시 풀</small></h2>
-          <p> <br><br> </p>
-          <div class="row">
-            <p class="col-sm-12">1. 출발지와 도착지, 출발 시각과 모집 인원을 결정하여 등록하세요. </p>
-            <p class="col-sm-12">2. 출발 시각에 도달하거나, 신청자가 모집 인원만큼 모이면 신청자들의 정보를 알 수 있습니다.</p>
-            <p class="col-sm-12">3. 자신의 이동 계획과 일치하는 택시 풀 모집이 있는지 찾아보세요. 없다면 직접 등록해서 찾을 수 있습니다.</p>
-            <p class="col-sm-12">4. 마이페이지에서 자신이 신청하거나 등록한 택시 풀 게시물에 대한 정보 확인과 수정을 할 수 있습니다.</p>
-            <small class="text-success"><br>※  moaU  택시 풀은 익명을 보장합니다. 상호간 정보는 마이페이지에서 확인 가능합니다.</small>
-          </div>
+          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
-        <img class="col-md-5 img-responsive img-rounded" src="{% static 'home/images/step_3.jpg' %}" alt="taxi sharing image">
+        <div class="col-md-5">
+          <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
       </div>
 
       <hr class="featurette-divider">

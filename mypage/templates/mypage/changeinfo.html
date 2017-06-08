@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<!-- 마이페이지 : 마이페이지 기본 화면 : 닉네임 설정 -->
+
+  <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">My Page</li>
+        <li><a href="{% url 'mypage:mp_bookmarket' %}">Book Market</a></li>
+        <li><a href="{% url 'mypage:mp_groupbuying' %}">Group Buying</a></li>
+        <li><a href="{% url 'mypage:mp_taxipool' %}">Taxi Pool</a></li>
+        <li><a style="color: #fff; background: rgba(255, 255, 255, 0.2);" href="#">Change Information</a></li>
+        <li><a href="#">Delete Account</a></li>
+      </ul>
+    </div>
+  <!-- /사이드바 -->
+  
+  <!-- 본문 -->
+  <div class="container">
+    <div class="page-wrapper">
+      <div class="page-content-wrapper">
+        <div class="changeinfo_mr">
+          {% if not user.is_authenticated %}
+            <div class="modal-body">
+              <p>You have to log in to proceed.</p>
+              <a class="btn btn-primary" href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}" role="button">Login</a>
+            </div>
+          {% else %}
+          <h3> Your Nickname / HP (Or Base E-mail / HP) </h3>
+          <h4> ☞  &nbsp;<span class="text-warning">wnrnrdl@naver.com </span> / <span class="text-warning">010-xxxx-xxxx</span>(Need to set)</h4>
+        <form>
+          <div class="form-group row">
+              <label for="example-text-input" class="col-4 col-form-label">New Nickname</label>
+              <div class="col-8">
+                  <input class="form-control" type="text" placeholder="Enter 12 or fewer non-special characters" id="example-text-input" name="nickname">
+              </div>
+          </div>
+          <div class="form-group row">
+              <label for="example-text-input" class="col-4 col-form-label">H.P</label>
+              <div class="col-8">
+                  <input class="form-control" type="text" placeholder="Enter only 12 digits except '-'" id="example-text-input" name="HP">
+              </div>
+          </div>
+          <div class="form-group row">
+            <button type="submit" class="btn btn-info col-3 offset-8">Submit</button>
+          </div>
+        </form>
+          {% endif %}
+          <!--<form class="form-inline">-->
+          <!--  <div class="form-group has-success has-feedback">-->
+          <!--    <label class="col-sm-6 control-label" for="inputSuccess"><strong>Input your new Nickname.</strong></label>-->
+          <!--    <div class="col-sm-8">-->
+          <!--      <input type="text" class="form-control" id="inputSuccess">-->
+          <!--      <button type="submit" class="btn btn-info">Submit</button>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</form>-->
+        </div>
+      </div>
+    <!-- /본문 -->
+    </div>
+  </div>
+{% endblock content %}

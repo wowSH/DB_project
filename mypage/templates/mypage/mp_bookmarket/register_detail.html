@@ -1,0 +1,66 @@
+
+<!-- 모달 : bid_cancel_user.html, 마이페이지 북마켓에서 유저가 bid 수정 혹은 취소용 -->
+<form method="POST" action="{% url 'mypage:register_detail' %}">
+    {% csrf_token %}
+    <div class="modal fade" id="register_detail{{forloop.counter}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Closing auction / Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Title</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.title }}" id="example-text-input" name="title" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Category</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.category }}" id="example-text-input" name="category" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">subject</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.subject }}" id="example-text-input" name="subject" disabled>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Immediate price</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.imm_price }}" id="example-text-input" name="imm_price" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Due Date</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.closing_date|date:"d/M/Y" }}" id="example-text-input" name="closing_date" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Current price</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ product.current_price }}" id="example-text-input" name="current_bid_price" disabled>
+                            <input class="form-control"type="hidden" name="product_id" value="{{ product.id }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {% if p.condition == "SELLING" %}
+                    <button type="submit" class="btn btn-primary" name="closing" value="1" >Closing</button>
+                    <button type="submit" class="btn btn-danger"  name="delete" value="1">Delete</button>
+                    {% else %}
+                    <button type="submit" class="btn btn-primary" name="closing" value="1" disabled>Closing</button>
+                    <button type="submit" class="btn btn-danger"  name="delete" value="1"disabled>Delete</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

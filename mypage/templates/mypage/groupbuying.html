@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<!-- 마이페이지 : group buying 화면-->
+
+  <!-- 사이드바 -->
+    <div id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        <li class="sidebar-brand">My Page</li>
+        <li><a href="{% url 'mypage:mp_bookmarket' %}">Book Market</a></li>
+        <li><a style="color: #fff; background: rgba(255, 255, 255, 0.2);" href="#">Group Buying</a></li>
+        <li><a href="{% url 'mypage:mp_taxipool' %}">Taxi Pool</a></li>
+        <li><a href="{% url 'mypage:changeinfo' %}">Change Information</a></li>
+        <li><a href="#">Delete Account</a></li>
+      </ul>
+    </div>
+  <!-- /사이드바 -->
+  
+  <!-- 본문 -->
+  <div class="container_mp">
+    <div class="page-wrapper">
+      <div class="page-content-wrapper">
+        <h1>MyPage - Group Buying</h1>
+        <h3 class="text-center"> Group Buying : Apply Status</h3>
+        <div class="table-responsive">
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>NO</th>
+                <th>Title</th>
+                <th>Apply date</th>
+                <th>Closing Date</th>
+                <th>Number of Person / Limit</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+               {% if applied_parties %}
+                {% for applied in applied_parties %}
+              <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ applied.title }}</td>
+                <td>{{ applied.apply_date |date:"d/M/Y" }}</td>
+                <td>{{ applied.closing_date|date:"d/M/Y" }}</td>
+                <td>{{ applied.now_person }} / {{ applied.num_person }}</td>
+                <td>{{ applied.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#apply_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              </tr>
+                {% include 'mypage/mp_groupbuying/apply_detail.html' with applied=applied %}
+                {% endfor %}
+              {% endif%}
+            </tbody>
+          </table>
+        </div>
+        <h3 class="text-center"> Group Buying : Party Open Status</h3>
+        <div class="table-responsive">        
+          <table class="table table-condensed table-hover table-striped">
+            <thead>
+              <tr>
+                <th>NO.</th>
+                <th>Title</th>
+                <th>Open date</th>
+                <th>Closing Date</th>
+                <th>Number of Person(Limit)</th>
+                <th>Status</th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+               {% if opened_parties %}
+                {% for opened in opened_parties %}
+              <tr>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ opened.title }}</td>
+                <td>{{ opened.open_date |date:"d/M/Y" }}</td>
+                <td>{{ opened.closing_date|date:"d/M/Y" }}</td>
+                <td>{{ opened.now_person }} / {{ opened.num_person }}</td>
+                <td>{{ opened.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#open_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              </tr>
+                {% include 'mypage/mp_groupbuying/open_detail.html' with opened=opened %}
+                {% endfor %}
+              {% endif%}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <!-- /본문 -->
+    </div>
+  </div>
+{% endblock content %}

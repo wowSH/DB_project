@@ -1,0 +1,53 @@
+
+<!-- 모달 : bid_cancel_user.html, 마이페이지 북마켓에서 유저가 bid 수정 혹은 취소용 -->
+<form method="POST" action="{% url 'mypage:apply_detail' %}">
+    {% csrf_token %}
+    <div class="modal fade" id="apply_detail{{forloop.counter}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ applied.title }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Due date</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ applied.closing_date|date:"d/M/Y" }} {{ applied.depart_time }}" id="example-text-input" name="date" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Recruited <i class="fa fa-users" aria-hidden="true"></i></label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ applied.now_person }} / {{ applied.num_person }}" id="example-text-input"  disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Content</label>
+                        <div class="col-8">
+                            <input class="form-control"type="text" placeholder="{{ applied.content }}" id="example-text-input" name="content" >
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-4 col-form-label">Image</label>
+                        <div class="col-8">
+                            <img class="card-img-top" src="/media/{{ applied.image }}" alt="Food image cap">
+                            <input class="form-control"type="hidden" name="apply_id" value="{{ applied.id }}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {% if applied.condition == "RECRUITING" %}
+                    <button type="button" class="btn btn-primary" name="change" value="1">Change</button>
+                    <button type="submit" class="btn btn-danger"  name="delete" value="1">Delete</button>
+                    {% else %}
+                    <button type="button" class="btn btn-primary" name="change" value="1">Change</button>
+                    <button type="submit" class="btn btn-danger"  name="delete" value="1">Delete</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
