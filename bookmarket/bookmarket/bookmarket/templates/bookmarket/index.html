@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container"style="margin-top:100px">
+
+    <div class="row justify-content-md-center">
+    </div>
+    <form method="POST" action="{% url 'bookmarket:searching' %}">
+    {% csrf_token %}
+    <div class="row justify-content-md-center"> <!-- for search box -->
+
+        <div class="col-md-2">
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="selected_category">
+                <option selected value="Major English">Major English</option>
+                <option value="Major Korean">Major Korean</option>
+                <option value="Liberal Arts">Liberal Arts</option>
+                <option value="ETC">ETC</option>
+            </select>
+        </div>
+         <div class="col-md-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="EX) Calculus / Thomas" name="keyword" />
+                <div class="input-group-btn">
+                    <div class="btn-group" role="group">
+                        <button type="submmit" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="{% if user.is_authenticated %}#register{% else %}#alarm_login{% endif %}">Register</button>
+        </div>
+
+        
+
+    </div>
+    {% include 'bookmarket/modals/register.html' %}
+    {% include 'modals/alarm_login.html' %}
+        
+    
+    <div class="row">  table 
+
+    
+        <table class="table table-striped ">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Current <i class="fa fa-krw" aria-hidden="true"></i></th>
+              <th>Immediate <i class="fa fa-krw" aria-hidden="true"></i></th>
+              <th>End Date</th>
+              <th>State</th>
+              <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if rows %}
+            {% for row in rows %}
+            <tr>
+                <td> {{ row.category }}</td>
+                <td> {{ row.title }}</td>
+                <td> {{ row.author }}</td>
+                <td> {{ row.current }}</td>
+                <td> {{ row.imm_price }}</td>
+                <td> {{ row.closing_date }}</td>
+                <td> {{ row.state }}</td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+          </tbody>
+        </table>
+    
+    </div>
+    
+    {% include 'bookmarket/partials/image_card.html' %}
+
+</div>
+{% endblock content %}

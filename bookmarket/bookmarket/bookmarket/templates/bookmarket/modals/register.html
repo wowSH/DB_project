@@ -1,0 +1,85 @@
+<form method="POST" action="{% url 'bookmarket:register_new' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal fade" id="register">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Register your product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Category</label>
+                        <div class="col-10">
+                            <select class="form-control" id="exampleSelect1" name="category">
+                                <option value="1">Major English</option>
+                                <option value="2">Major Korean</option>
+                                <option value="3">Liberal Arts</option>
+                                <option value="4">ETC</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Title</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="Engineering programming 1 book" id="example-text-input" name="title">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Subject</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="Engineering programming 1" id="example-text-input" name="subject">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Author</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="Optional" id="example-text-input" name="author">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Starting price</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="경매시작가" id="example-text-input" name="init_price">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Immediate price</label>
+                        <div class="col-10">
+                            <input class="form-control" type="text" placeholder="즉시 판매가" id="example-text-input" name="imm_price">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" class="col-2 col-form-label">Due Date</label>
+                        <div class="col-10">
+                            <input class="form-control" type="date" value="{% now "Y-m-d" %}" id="example-date-input" name="closing_date">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">State</label>
+                        <div class="col-10">
+                            <select class="form-control" id="exampleSelect1" name="state">
+                              <option>A</option>
+                              <option>B</option>
+                              <option>C</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-text-input" class="col-2 col-form-label">Image</label>
+                        <div class="col-10">
+                            <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp" name="image">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

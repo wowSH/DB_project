@@ -1,0 +1,31 @@
+{% for row in rows %}
+{% if forloop.counter0|divisibleby:3 %}
+<div class="row card-deck">
+{% endif %}
+  <div class="col-4">
+    <div class="card" style="width: 20rem;">
+      
+      <img class="card-img-top" src="/media/{{ row.image }}" alt="Card image cap">
+  
+      <!-- Card header -->
+      <div class="card-block text-center">
+        <h4 class="card-title">{{ row.title }}</h4>
+        <hr>
+      </div>
+      <!-- Card footer -->
+      <div class="card-data">
+          <ul style="overflow-x:hidden;white-space:nowrap;">
+              <li style="display:inline;"><i class="fa fa-clock-o"></i> {{ row.closing_date|date:"d/M/Y" }}</li>
+              <li style="display:inline;"><i class="fa fa-krw" aria-hidden="true"></i>{{ row.current_price}}</li>
+              <li style="display:inline;">
+                  <button type="button" class="btn-sm btn-primary float-right" data-toggle="modal" data-target="{% if user.is_authenticated %}#details{% else %}#alarm_login{% endif %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+          </ul>
+      </div>
+      <!-- Card footer -->
+    </div>
+  </div>
+    {% include 'bookmarket/modals/details.html' with product=row %}
+{% if forloop.counter|divisibleby:3 %}
+</div>
+{% endif %}
+{% endfor %}
