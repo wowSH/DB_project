@@ -1,0 +1,31 @@
+{% for ro in row %}
+{% if forloop.counter0|divisibleby:3 %}
+<div class="row card-deck">
+{% endif %}
+  <div class="col-4">
+    <div class="card" style="width: 20rem;">
+
+      <!--<img class="card-img-top" src="/media/{{ ro.image }}" alt="Card image cap">-->
+
+      <!-- Card header -->
+      <div class="card-block text-center">
+        <h4 class="card-title">{{ ro.departure }}->{{ro.destination}}</h4>
+        <hr>
+      </div>
+      <!-- Card footer -->
+      <div class="card-data">
+          <ul style="overflow-x:hidden;white-space:nowrap;">
+              <li style="display:inline;"><i class="fa fa-clock-o"></i> {{ro.depart_date|date:"d/M/Y" }}&nbsp;&nbsp;{{ro.depart_time|time:"G" }}:{{ro.depart_time|time:"i" }}</li>
+              <li style="display:inline;">{{ro.now_person}}/{{ro.num_person}}</li>
+              <li style="display:inline;">
+                  <button type="button" class="btn-sm btn-primary float-right" data-toggle="modal" data-target="{% if user.is_authenticated %}#details{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+          </ul>
+      </div>
+      <!-- Card footer -->
+    </div>
+  </div>
+      {% include 'taxipool/modals/details.html' with prod=ro %}
+{% if forloop.counter|divisibleby:3 %}
+</div>
+{% endif %}
+{% endfor %}

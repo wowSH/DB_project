@@ -28,39 +28,31 @@
           <table class="table table-condensed table-hover table-striped">
             <thead>
               <tr>
-                <th>Departure time<br>(MM. DD, HH)</th>
+                <th>NO.</th>
+                <th>Departure time</th>
                 <th>Departure</th>
                 <th>Destination</th>
                 <th>Number of Person<br>(Limit)</th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+              {% if attended_taxis %}
+                {% for attend in attended_taxis %}
               <tr>
-                <td>6. 8, 23시</td>
-                <td>유니스트</td>
-                <td>울산역</td>
-                <td>2 / 3</td>
-                <td>Atteding<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to cancel</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ attend.depart_date}} {{ attend.depart_time }}</td>
+                <td>{{ attend.departure }}</td>
+                <td>{{ attend.destination }}</td>
+                <td>{{ attend.now_person }} / {{ attend.num_person }}</td>
+                <td>{{ attend.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#attend_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>6. 5, 24시</td>
-                <td>울산대</td>
-                <td>유니스트</td>
-                <td>3 / 3</td>
-                <td>Atteding Success<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the seeker</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <td>6. 10, 7시</td>
-                <td>유니스트</td>
-                <td>울산여고</td>
-                <td>2 / 3</td>
-                <td>Attending failed(canceled)</td>
-                <td> </td>
-              </tr>
+                {% include 'mypage/mp_taxipool/attend_detail.html' with attend=attend %}
+                {% endfor %}
+              {% endif%}
+              
             </tbody>
           </table>
         </div>
@@ -69,39 +61,31 @@
           <table class="table table-condensed table-hover table-striped">
             <thead>
               <tr>
-                <th>Departure time<br>(MM. DD, HH)</th>
+                <th>NO.</th>
+                <th>Departure time</th>
                 <th>Departure</th>
                 <th>Destination</th>
                 <th>Number of Person<br>(Limit)</th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+              {% if sought_taxis %}
+                {% for seek in sought_taxis %}
               <tr>
-                <td>6. 11, 15시</td>
-                <td>울산역</td>
-                <td>유니스트</td>
-                <td>2 / 3</td>
-                <td>Seeking<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to close early or cancel</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td>{{ seek.id}}</td>
+                <td>{{ seek.depart_date}} {{ seek.depart_time }}</td>
+                <td>{{ seek.departure }}</td>
+                <td>{{ seek.destination }}</td>
+                <td>{{ seek.now_person }} / {{ seek.num_person }}</td>
+                <td>{{ seek.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#seek_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>6. 1, 12시</td>
-                <td>울산역</td>
-                <td>부산역</td>
-                <td>2 / 3</td>
-                <td>Successfull Finish<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the attendant </td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <td>4. 29, 14시</td>
-                <td>울산역</td>
-                <td>부산역</td>
-                <td>2 / 3</td>
-                <td>Seeking failed</td>
-                <td> </td>
-              </tr>
+                {% include 'mypage/mp_taxipool/seek_detail.html' with seek=seek %}
+                {% endfor %}
+              {% endif%}
+             
             </tbody>
           </table>
         </div>

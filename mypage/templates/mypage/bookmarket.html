@@ -28,7 +28,7 @@
           <table class="table table-condensed table-hover table-striped">
             <thead>
               <tr>
-                <th>#</th>
+                <th>NO.</th>
                 <th>Title</th>
                 <th>Bid date</th>
                 <th>Closing Date</th>
@@ -38,16 +38,16 @@
               </tr>
             </thead>
             <tbody>
-              {% if bid_rank_list %}
-                {% for ranking, bidded in bid_rank_list %}
+              {% if bidded_products %}
+                {% for bidded in bidded_products %}
               <tr>
                 <td>{{ forloop.counter}}</td>
-                <td>{{ bidded }}</td>
+                <td>{{ bidded.title }}</td>
                 <td>{{ bidded.bid_date|date:"d/M/Y" }}</td>
                 <td>{{ bidded.closing_date|date:"d/M/Y" }}</td>
-                <td>{{ bidded.current_price }}</td>
-                <td>{% if bidded.condition == "selling" or bidded.condition == '' %}{% if ranking %}1 st{% else %}NOT 1st {% endif %}{% else %} {{ bidded.condition}} {% endif %}</td>
-                <td><button type="button" data-toggle="modal" data-target="{% if user.is_authenticated %}#bid_detail{{ forloop.counter }}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <td>{{ bidded.bid_price }}</td>
+                <td>{% if bidded.condition == "SELLING" or bidded.condition == '' %}{% if bidded.bid_price >= bidded.current_price %}1 st{% else %}NOT 1st {% endif %}{% else %} {{ bidded.condition}} {% endif %}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#bid_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                 <i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
                 {% include 'mypage/mp_bookmarket/bid_detail.html' with bid=bidded %}
@@ -56,6 +56,8 @@
             </tbody>
           </table>
         </div>
+
+
         <h3 class="text-center"> Book Market : Register Status</h3>
         <div class="table-responsive">
           <table class="table table-condensed table-hover table-striped">
@@ -66,8 +68,7 @@
                 <th>Register date</th>
                 <th>Closing Date</th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
-                <th><i class="fa fa-trash" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
@@ -78,15 +79,16 @@
                 <td>{{ p.title }}</td>
                 <td>{{ p.register_date|date:"d/M/Y" }}</td>
                 <td>{{ p.closing_date|date:"d/M/Y" }}</td>
-                <td>{% if p.condition == "selling" or p.condition == '' %}At Aution{% else %} {{ bidded.condition}} {% endif %}</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-                <td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                <td>{% if p.condition == "selling" %}At Aution{% else %} {{ p.condition}} {% endif %}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#register_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
+                {% include 'mypage/mp_bookmarket/register_detail.html' with product=p %}
                 {% endfor %}
               {% endif%}
             </tbody>
           </table>
-      </div>
+        </div>
     <!-- /본문 -->
     </div>
   </div>

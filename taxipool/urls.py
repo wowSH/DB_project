@@ -7,5 +7,6 @@ urlpatterns = [
 
     url(r'^$', views.index, name='index'),
     url(r'^seek$', views.seek_new, name='seek_new'),
-
+    url(r'^searching$', views.Searching, name='Searching'),
+    url(r'^attending$', views.attending, name='attending'),
 ]

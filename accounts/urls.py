@@ -8,7 +8,5 @@ urlpatterns = patterns('',
         name='logout',
         kwargs={'next_page': '/'}
     ),
-    
-    url(r'^profile', views.profile, name='profile'),
 
 )

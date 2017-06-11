@@ -1,0 +1,51 @@
+<form method="POST" action="{% url 'taxipool:attending' %}">
+    {% csrf_token %}
+    <div class="modal fade" id="details{{forloop.counter}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ prod.departure }}->{{prod.destination}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body row">
+                  <table class="table table-user-information col-sm-10 offset-1">
+                    <tbody>
+                      <tr>
+                        <td>Gathered</td>
+                        <td>{{ prod.now_person }}</td>
+                      </tr>
+                      <tr>
+                        <td>Gathering</td>
+                        <td>{{ prod.num_person }}</td>
+                      </tr>
+                      <tr>
+                        <td>Due dateTime</td>
+                        <td>{{ro.depart_date|date:"d/M/Y" }}&nbsp;&nbsp;{{ro.depart_time|time:"G" }}:{{ro.depart_time|time:"i" }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>Content </td>
+                        <td>{{ prod.content }}</td>
+                      </tr>
+                      
+                      <tr>
+                        <td>Comment</td>
+                        <td><textarea class="form-control" id="example-textarea-input" name="comment" rows="3"></textarea></td>
+                        <td><input class="form-control" type="hidden" name="taxi_id" value="{{ prod.id }}"></td>
+                        <td><input class="form-control" type="hidden" name="now_person" value="{{ prod.now_person }}"></td>
+                        <td><input class="form-control" type="hidden" name="num_person" value="{{ prod.num_person }}"></td>
+                        <td><input class="form-control" type="hidden" name="condition1" value="{{ prod.condition }}"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Seek</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

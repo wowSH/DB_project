@@ -1,80 +1,103 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.db import connection, transaction
 from bookmarket.models import *
 from groupbuying.models import *
 from taxipool.models import *
+from django.contrib.auth.decorators import login_required
+from django.db import connection, transaction
+from home.views import * # common fucntion
 
 import datetime
 # Create your views here.
-def dictfetchall(cursor):
-    "Return all rows from a cursor as a dict"
-    columns = [col[0] for col in cursor.description]
-    return [
-        dict(zip(columns, row))
-        for row in cursor.fetchall()
-    ]
-        
-        
+
 def changeinfo(request):
     return render(request, 'mypage/changeinfo.html')
 
 def mp_bookmarket(request):
     cursor = connection.cursor()
-    
-    cursor.execute("SELECT * FROM bookmarket_bid_candidate")
-    biddings = dictfetchall(cursor)
-    
-    cursor.execute("SELECT bid_price FROM bookmarket_bid_candidate AS b INNER JOIN bookmarket_product_register AS p ON b.product_id = p.id ORDER BY bid_price DESC limit 1")
-    highest = dictfetchall(cursor)
-    
-    rankings = []
-    for high,bid in zip(highest, biddings):
-        if high['bid_price'] == bid['bid_price']:
-            rankings.append(True)
-        else:
-            rankings.append(False)
-
-    cursor.execute("SELECT p.id AS product_id, b.id AS bid_id, p.title, b.bid_date, b.bid_price, p.category, p.subject, p.imm_price, p.closing_date, p.current_price, p.condition FROM bookmarket_bid_candidate AS b INNER JOIN bookmarket_product_register AS p ON b.product_id = p.id;")
-    #cursor.execute("SELECT RANK() OVER (ORDER BY i.bid_price ASC) AS Rank FROM Bid_Candidate AS b INNER JOIN Product_Register AS p ON b.product_id = p.id ")
-    bidded_products = dictfetchall(cursor)
-
-    """
-    rankings = []    
-    for bidding in biddings:
-        ordered_list = list(Bid_Candidate.objects.filter(product=bidding.product).order_by('bid_price').values_list('bid_price'))
-        ranking = ordered_list.index(bid_price)
-        rankings.append(ranking)
-    """
-    bid_rank_list = zip(rankings, bidded_products)
-    
-    
-    cursor.execute("SELECT * FROM bookmarket_product_register")
-    products = dictfetchall(cursor)
-    
-  
-    bid_rank_list = zip(rankings, bidded_products)
-    context = {"products": products, "bid_rank_list":bid_rank_list}
-
+    context = get_entire_bookmarket_with_user(request, cursor, True)
     return render(request, 'mypage/bookmarket.html', context)
-    
+
 def mp_groupbuying(request):
-    return render(request, 'mypage/groupbuying.html')
-    
+    cursor = connection.cursor()
+    context = get_entire_groupbuying_with_user(request, cursor, True)
+    return render(request, 'mypage/groupbuying.html',context)
+
 def mp_taxipool(request):
-    return render(request, 'mypage/taxipool.html')
+    cursor = connection.cursor()
+    context = get_entire_taxipool_with_user(request, cursor, True)
+    return render(request, 'mypage/taxipool.html',context)
 
+def bid_detail(request):
+    new_bid_price = request.POST['new_bid_price1']
+    bid_id = request.POST['bid_id']
+    product_id = request.POST['product_id']
 
-    
+    cursor = connection.cursor()
+    if request.POST.get('new_bid'):
+        update_bid(request, cursor, bid_id, new_bid_price)
+
+    if request.POST.get('delete'):
+        delete_bid(request, cursor, bid_id)
+
+    # common
+    context = get_entire_bookmarket_with_user(request, cursor, True)
+    return render(request, 'mypage/bookmarket.html', context)
+
+def register_detail(request):
+    product_id = request.POST['product_id']
+
+    cursor = connection.cursor()
+    if request.POST.get('closing'):
+        close_product(request, cursor, product_id)
+
+    if request.POST.get('delete'):
+        delete_product(request, cursor, product_id)
+
+    context = get_entire_bookmarket_with_user(request, cursor, True)
+    return render(request, 'mypage/bookmarket.html', context)
 # def backout (request):
-#     return
 
-# def groupbuying(request):
-#     return
 
-# def taxipool(request):
-#     return
+def seek_detail(request):
+    seek_id = request.POST['seek_id']
 
-# def bookmarket(request):
-#     return
+    cursor = connection.cursor()
+    if request.POST.get('delete'):
+        delete_seek(request, cursor, seek_id)
+
+    context = get_entire_taxipool_with_user(request, cursor, True)
+    return render(request, 'mypage/taxipool.html', context)
+
+def attend_detail(request):
+    attend_id = request.POST['attend_id']
+
+    cursor = connection.cursor()
+    if request.POST.get('delete'):
+        delete_attend(request, cursor, attend_id)
+
+    context = get_entire_taxipool_with_user(request, cursor, True)
+    return render(request, 'mypage/taxipool.html', context)
+
+def apply_detail(request):
+    apply_id = request.POST['apply_id']
+    content = request.POST['content']
+
+    cursor = connection.cursor()
+    if request.POST.get('change'):
+        update_apply(request, cursor, apply_id, content)
+
+    if request.POST.get('delete'):
+        delete_apply(request, cursor, apply_id)
+
+    context = get_entire_groupbuying_with_user(request, cursor, True)
+    return render(request, 'mypage/groupbuying.html', context)
+
+def open_detail(request):
+    open_id = request.POST['open_id']
+    cursor = connection.cursor()
+    if request.POST.get('delete'):
+        delete_open(request, cursor, open_id)
+
+    context = get_entire_groupbuying_with_user(request, cursor, True)
+    return render(request, 'mypage/groupbuying.html', context)

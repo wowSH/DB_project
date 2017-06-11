@@ -28,43 +28,31 @@
           <table class="table table-condensed table-hover table-striped">
             <thead>
               <tr>
-                <th>#</th>
+                <th>NO</th>
                 <th>Title</th>
                 <th>Apply date</th>
                 <th>Closing Date</th>
-                <th>Number of Person(Limit)</th>
+                <th>Number of Person / Limit</th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+               {% if applied_parties %}
+                {% for applied in applied_parties %}
               <tr>
-                <td>1</td>
-                <td>오늘 밤 야식 파티 모집합니다!!</td>
-                <td>6. 5</td>
-                <td>6. 5</td>
-                <td>2 / 3</td>
-                <td>Applying<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to cancel</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ applied.title }}</td>
+                <td>{{ applied.apply_date |date:"d/M/Y" }}</td>
+                <td>{{ applied.closing_date|date:"d/M/Y" }}</td>
+                <td>{{ applied.now_person }} / {{ applied.num_person }}</td>
+                <td>{{ applied.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#apply_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>화장품 공동구매해요!</td>
-                <td>5. 31</td>
-                <td>6. 7</td>
-                <td>3 / 4</td>
-                <td>Applying failed(canceled) </td>
-                <td> </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>I found group purchase for vitamin!!</td>
-                <td>5. 21</td>
-                <td>6. 2</td>
-                <td>10 / 10</td>
-                <td>Applying success<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the party opener</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
+                {% include 'mypage/mp_groupbuying/apply_detail.html' with applied=applied %}
+                {% endfor %}
+              {% endif%}
             </tbody>
           </table>
         </div>
@@ -73,43 +61,31 @@
           <table class="table table-condensed table-hover table-striped">
             <thead>
               <tr>
-                <th>#</th>
+                <th>NO.</th>
                 <th>Title</th>
                 <th>Open date</th>
                 <th>Closing Date</th>
                 <th>Number of Person(Limit)</th>
                 <th>Status</th>
-                <th><i class="fa fa-search-plus" aria-hidden="true"></i></th>
+                <th><i class="fa fa-search-plus" aria-hidden="true"></i><i class="fa fa-trash" aria-hidden="true"></i></th>
               </tr>
             </thead>
             <tbody>
+               {% if opened_parties %}
+                {% for opened in opened_parties %}
               <tr>
-                <td>1</td>
-                <td>6월 9일 피자 배달비 나누실 분!</td>
-                <td>6. 5</td>
-                <td>6. 9</td>
-                <td>0 / 3</td>
-                <td>Recruiting<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to close early or cancel</td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
+                <td>{{ forloop.counter}}</td>
+                <td>{{ opened.title }}</td>
+                <td>{{ opened.open_date |date:"d/M/Y" }}</td>
+                <td>{{ opened.closing_date|date:"d/M/Y" }}</td>
+                <td>{{ opened.now_person }} / {{ opened.num_person }}</td>
+                <td>{{ opened.condition}}</td>
+                <td><a href="#" data-toggle="modal" data-target="{% if user.is_authenticated %}#open_detail{{forloop.counter}}{% else %}#alarm_login{% endif %}"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i></a></td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>핸드폰 케이스 공동구매 모집합니다. </td>
-                <td>5. 31</td>
-                <td>6. 2</td>
-                <td>7 / 7</td>
-                <td>Successfull Finish<br><i class="fa fa-hand-o-right" aria-hidden="true"></i> Click to confirm the applicant </td>
-                <td><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i></a></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>5월 7일 피자 배달비 나누실 분!</td>
-                <td>5. 3</td>
-                <td>5. 7</td>
-                <td>1 / 3</td>
-                <td>Recruiting failed</td>
-                <td> </td>
-              </tr>
+                {% include 'mypage/mp_groupbuying/open_detail.html' with opened=opened %}
+                {% endfor %}
+              {% endif%}
             </tbody>
           </table>
         </div>

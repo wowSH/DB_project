@@ -6,7 +6,17 @@
 </div>
 <div class="jumbotron jumbo_group">
     <div class="container">
-        <form method="POST" action="#"><!-- url 'groupbuying:searching' -->
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <strong>{{ message }}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <form method="POST" action="{% url 'groupbuying:searching' %}">
             <div class="row justify-content-md-center"> <!-- for search box -->
             {% csrf_token %}
                 <div class="col-md-2">
@@ -19,7 +29,7 @@
                 </div>
                 <div class="col-md-7">
                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="EX) Pizza / Chicken ..." name="keyword" />
+                        <input type="text" class="form-control" placeholder="EX) Pizza / Chicken ..." name="selected_title" />
                         <div class="input-group-btn">
                             <div class="btn-group" role="group">
                                 <button type="submmit" class="btn btn-primary btn-lg"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -34,7 +44,7 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label><h2 class="text-uppercase" style="color:#fff"> <strong>Open your Party</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
-                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="{% if user.is_authenticated %}}#open{% else %}#alarm_login{% endif %}">Open</button>
+                        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="{% if user.is_authenticated %}#open{% else %}#alarm_login{% endif %}">Open</button>
                     </div>
                 </form>
             </div>
@@ -46,6 +56,6 @@
         {% include 'modals/alarm_login.html' %}
 
 <div class="container">
-    <!-- 실제 테이블 들어가면 됨-->
+    {% include 'groupbuying/partials/image_card.html' %}
 </div>
 {% endblock content %}
